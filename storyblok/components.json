@@ -1,0 +1,799 @@
+[
+  {
+    "name": "page",
+    "display_name": "Страница онбординга",
+    "is_root": true,
+    "is_nestable": false,
+    "schema": {
+      "header_label": {
+        "type": "text",
+        "display_name": "Подпись в шапке",
+        "description": "Например: Onboarding · Office",
+        "pos": 0
+      },
+      "crumb_root": {
+        "type": "text",
+        "display_name": "Хлебные крошки: корень",
+        "description": "Например: Онбординг",
+        "pos": 1
+      },
+      "crumb": {
+        "type": "text",
+        "display_name": "Хлебные крошки: текущая",
+        "description": "Например: Office",
+        "pos": 2
+      },
+      "footer_text": {
+        "type": "text",
+        "display_name": "Текст в подвале",
+        "description": "Например: © 2026 TRENDSETTER · Onboarding · Office",
+        "pos": 3
+      },
+      "feedback_link": {
+        "type": "multilink",
+        "display_name": "Ссылка «Обратная связь» в шапке",
+        "pos": 4
+      },
+      "body": {
+        "type": "bloks",
+        "display_name": "Блоки страницы",
+        "restrict_components": true,
+        "component_whitelist": [
+          "page_head",
+          "doc",
+          "final_banner"
+        ],
+        "description": "Сверху вниз: шапка страницы, документ с разделами, финальный баннер",
+        "pos": 5
+      },
+      "meta_title": {
+        "type": "text",
+        "display_name": "Заголовок для вкладки",
+        "pos": 6
+      },
+      "meta_description": {
+        "type": "textarea",
+        "display_name": "Описание страницы",
+        "pos": 7
+      }
+    }
+  },
+  {
+    "name": "page_head",
+    "display_name": "Шапка страницы",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "tag": {
+        "type": "text",
+        "display_name": "Метка",
+        "description": "Без скобок: скобки добавляются сами",
+        "pos": 0
+      },
+      "greeting": {
+        "type": "text",
+        "display_name": "Приветствие рядом с меткой",
+        "pos": 1
+      },
+      "title_before": {
+        "type": "text",
+        "display_name": "Заголовок: до маркера",
+        "pos": 2
+      },
+      "title_highlight": {
+        "type": "text",
+        "display_name": "Заголовок: слова на жёлтом маркере",
+        "description": "Одна главная мысль",
+        "pos": 3
+      },
+      "title_after": {
+        "type": "text",
+        "display_name": "Заголовок: после маркера",
+        "pos": 4
+      },
+      "intro": {
+        "type": "textarea",
+        "display_name": "Вводный текст",
+        "pos": 5
+      }
+    }
+  },
+  {
+    "name": "doc",
+    "display_name": "Документ",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "sections": {
+        "type": "bloks",
+        "display_name": "Разделы",
+        "restrict_components": true,
+        "component_whitelist": [
+          "doc_section"
+        ],
+        "description": "Номера [01], [02] и оглавление считаются по порядку разделов сами",
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "doc_section",
+    "display_name": "Раздел документа",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "nav_label": {
+        "type": "text",
+        "display_name": "Название в оглавлении и метке",
+        "required": true,
+        "pos": 0
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок раздела",
+        "description": "Необязательно",
+        "pos": 1
+      },
+      "lead": {
+        "type": "textarea",
+        "display_name": "Вводный абзац",
+        "description": "Необязательно",
+        "pos": 2
+      },
+      "content": {
+        "type": "bloks",
+        "display_name": "Содержимое раздела",
+        "restrict_components": true,
+        "component_whitelist": [
+          "ceo_letter",
+          "off_price_plane",
+          "values_group",
+          "kpi_group",
+          "timeline_group",
+          "brands_group",
+          "steps_group",
+          "resources_frame"
+        ],
+        "pos": 3
+      }
+    }
+  },
+  {
+    "name": "ceo_letter",
+    "display_name": "Письмо CEO",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "quote": {
+        "type": "textarea",
+        "display_name": "Цитата",
+        "required": true,
+        "pos": 0
+      },
+      "name": {
+        "type": "text",
+        "display_name": "Имя",
+        "required": true,
+        "pos": 1
+      },
+      "role": {
+        "type": "text",
+        "display_name": "Должность",
+        "pos": 2
+      },
+      "photo": {
+        "type": "asset",
+        "filetypes": [
+          "images"
+        ],
+        "display_name": "Фото",
+        "description": "Квадратное; пока нет - серая заглушка",
+        "pos": 3
+      }
+    }
+  },
+  {
+    "name": "off_price_plane",
+    "display_name": "Красная плоскость «кто мы»",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "accent": {
+        "type": "text",
+        "display_name": "Акцент моно-капсом",
+        "required": true,
+        "pos": 0
+      },
+      "lead": {
+        "type": "textarea",
+        "display_name": "Лид",
+        "required": true,
+        "pos": 1
+      },
+      "principles": {
+        "type": "bloks",
+        "display_name": "Принципы",
+        "restrict_components": true,
+        "component_whitelist": [
+          "principle"
+        ],
+        "description": "Рекомендуем три",
+        "pos": 2
+      },
+      "note": {
+        "type": "textarea",
+        "display_name": "Примечание",
+        "pos": 3
+      }
+    }
+  },
+  {
+    "name": "principle",
+    "display_name": "Принцип",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "values_group",
+    "display_name": "Ценности",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Подзаголовок",
+        "required": true,
+        "pos": 0
+      },
+      "items": {
+        "type": "bloks",
+        "display_name": "Плитки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "value_tile"
+        ],
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "value_tile",
+    "display_name": "Плитка ценности",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "pos": 1
+      },
+      "color": {
+        "type": "option",
+        "display_name": "Цвет плитки",
+        "source": "self",
+        "options": [
+          {
+            "name": "Красный",
+            "value": "red"
+          },
+          {
+            "name": "Синий",
+            "value": "blue"
+          },
+          {
+            "name": "Мятный",
+            "value": "mint"
+          },
+          {
+            "name": "Жёлтый",
+            "value": "yellow"
+          },
+          {
+            "name": "Чёрный (Sage)",
+            "value": "sage"
+          },
+          {
+            "name": "Светло-серый (Paper)",
+            "value": "paper"
+          }
+        ],
+        "default_value": "red",
+        "pos": 2
+      },
+      "icon": {
+        "type": "option",
+        "display_name": "Иконка",
+        "source": "self",
+        "options": [
+          {
+            "name": "Кураторство",
+            "value": "care"
+          },
+          {
+            "name": "Свобода",
+            "value": "free"
+          },
+          {
+            "name": "Прозрачность",
+            "value": "open"
+          },
+          {
+            "name": "Движение",
+            "value": "move"
+          },
+          {
+            "name": "Новое",
+            "value": "new"
+          },
+          {
+            "name": "Сообщество",
+            "value": "team"
+          }
+        ],
+        "pos": 3
+      }
+    }
+  },
+  {
+    "name": "kpi_group",
+    "display_name": "Цифры",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Подзаголовок",
+        "required": true,
+        "pos": 0
+      },
+      "items": {
+        "type": "bloks",
+        "display_name": "Плитки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "kpi_tile"
+        ],
+        "description": "Только подтверждённые цифры",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "kpi_tile",
+    "display_name": "Плитка цифры",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Подпись",
+        "required": true,
+        "pos": 0
+      },
+      "value": {
+        "type": "text",
+        "display_name": "Значение",
+        "required": true,
+        "pos": 1
+      },
+      "note": {
+        "type": "text",
+        "display_name": "Второй чип (период, источник)",
+        "description": "Необязательно",
+        "pos": 2
+      }
+    }
+  },
+  {
+    "name": "timeline_group",
+    "display_name": "Таймлайн",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Подзаголовок",
+        "required": true,
+        "pos": 0
+      },
+      "items": {
+        "type": "bloks",
+        "display_name": "Вехи",
+        "restrict_components": true,
+        "component_whitelist": [
+          "timeline_item"
+        ],
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "timeline_item",
+    "display_name": "Веха",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "year": {
+        "type": "text",
+        "display_name": "Год",
+        "required": true,
+        "pos": 0
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "required": true,
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "brands_group",
+    "display_name": "Бренды",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Подзаголовок",
+        "required": true,
+        "pos": 0
+      },
+      "items": {
+        "type": "bloks",
+        "display_name": "Плитки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "brand_tile"
+        ],
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "brand_tile",
+    "display_name": "Плитка бренда",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "name": {
+        "type": "text",
+        "display_name": "Название",
+        "required": true,
+        "pos": 0
+      },
+      "logo": {
+        "type": "asset",
+        "filetypes": [
+          "images"
+        ],
+        "display_name": "Логотип",
+        "description": "Только официальные файлы бренда",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "steps_group",
+    "display_name": "Шаги первого дня",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "items": {
+        "type": "bloks",
+        "display_name": "Шаги",
+        "restrict_components": true,
+        "component_whitelist": [
+          "step_tile"
+        ],
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "step_tile",
+    "display_name": "Шаг",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "icon": {
+        "type": "option",
+        "display_name": "Иконка",
+        "source": "self",
+        "options": [
+          {
+            "name": "Документы",
+            "value": "doc"
+          },
+          {
+            "name": "Доступы",
+            "value": "clipboard"
+          },
+          {
+            "name": "Встреча",
+            "value": "target"
+          },
+          {
+            "name": "Команда",
+            "value": "team"
+          },
+          {
+            "name": "Офис",
+            "value": "office"
+          },
+          {
+            "name": "Обед",
+            "value": "lunch"
+          },
+          {
+            "name": "Магазин",
+            "value": "store"
+          },
+          {
+            "name": "Ассортимент",
+            "value": "shirt"
+          },
+          {
+            "name": "Касса",
+            "value": "card"
+          },
+          {
+            "name": "Практика",
+            "value": "spark"
+          }
+        ],
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "resources_frame",
+    "display_name": "Рамка «Ресурсы»",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок рамки",
+        "pos": 0
+      },
+      "groups": {
+        "type": "bloks",
+        "display_name": "Группы",
+        "restrict_components": true,
+        "component_whitelist": [
+          "link_group",
+          "qa_group",
+          "feedback_group"
+        ],
+        "description": "Нумеруются по порядку. Группе можно отдать два номера (01–02)",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "link_group",
+    "display_name": "Группа ссылок",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "number_span": {
+        "type": "number",
+        "display_name": "Сколько номеров занимает",
+        "description": "1 - обычно; 2 - «01–02»",
+        "default_value": "1",
+        "pos": 1
+      },
+      "links": {
+        "type": "bloks",
+        "display_name": "Ссылки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "resource_link"
+        ],
+        "pos": 2
+      }
+    }
+  },
+  {
+    "name": "resource_link",
+    "display_name": "Ссылка",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "kind": {
+        "type": "option",
+        "display_name": "Тип",
+        "source": "self",
+        "options": [
+          {
+            "name": "Сайт",
+            "value": "Сайт"
+          },
+          {
+            "name": "Соцсеть",
+            "value": "Соцсеть"
+          }
+        ],
+        "default_value": "Сайт",
+        "pos": 0
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 1
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Пояснение",
+        "pos": 2
+      },
+      "action": {
+        "type": "text",
+        "display_name": "Подпись у стрелки (десктоп)",
+        "pos": 3
+      },
+      "link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт",
+        "pos": 4
+      }
+    }
+  },
+  {
+    "name": "qa_group",
+    "display_name": "Группа вопросов",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "number_span": {
+        "type": "number",
+        "display_name": "Сколько номеров занимает",
+        "default_value": "1",
+        "pos": 1
+      },
+      "items": {
+        "type": "bloks",
+        "display_name": "Вопросы",
+        "restrict_components": true,
+        "component_whitelist": [
+          "qa_item"
+        ],
+        "pos": 2
+      }
+    }
+  },
+  {
+    "name": "qa_item",
+    "display_name": "Вопрос",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "question": {
+        "type": "text",
+        "display_name": "Вопрос",
+        "required": true,
+        "pos": 0
+      },
+      "answer": {
+        "type": "textarea",
+        "display_name": "Ответ",
+        "description": "Пустая строка начинает новый абзац. Пока ответа нет, пункт не раскрывается",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "feedback_group",
+    "display_name": "Окно обратной связи",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 0
+      },
+      "number_span": {
+        "type": "number",
+        "display_name": "Сколько номеров занимает",
+        "default_value": "1",
+        "pos": 1
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "pos": 2
+      },
+      "muted": {
+        "type": "textarea",
+        "display_name": "Пояснение серым",
+        "pos": 3
+      },
+      "button_label": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "pos": 4
+      },
+      "button_link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт кнопка",
+        "pos": 5
+      }
+    }
+  },
+  {
+    "name": "final_banner",
+    "display_name": "Финальный баннер",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Метка",
+        "description": "Без скобок",
+        "pos": 0
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 1
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Лид",
+        "pos": 2
+      },
+      "button_label": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "pos": 3
+      },
+      "button_link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт кнопка",
+        "pos": 4
+      }
+    }
+  }
+]

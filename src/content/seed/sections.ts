@@ -1,0 +1,176 @@
+import type { Block } from "@/lib/storyblok/fetchStory";
+import type { Builder } from "./blok.ts";
+import { link } from "./blok.ts";
+
+/**
+ * Разделы, одинаковые у Office и Retail (сверено с Figma, стр. «05 Онбординг»):
+ * «Приветствие», «Культура», шапка страницы и финальный баннер. Различается
+ * только «Первый день» и «Ресурсы» - они лежат в office.ts и retail.ts.
+ */
+
+export const pageHead = (b: Builder): Block =>
+  b("page_head", {
+    tag: "Onboarding",
+    greeting: "Привет, коллега!",
+    title_before: "Твоя",
+    title_highlight: "новая глава",
+    title_after: "начинается здесь.",
+    intro:
+      "Здесь ты сможешь уверенно начать, быстро сориентироваться и сразу почувствовать себя частью команды.",
+  });
+
+export const greetingSection = (b: Builder): Block =>
+  b("doc_section", {
+    nav_label: "Приветствие",
+    title: "Тебя здесь ждали.",
+    content: [
+      b("ceo_letter", {
+        quote:
+          "«Добро пожаловать в TRENDSETTER. Здесь можно проявляться, задавать вопросы, брать ответственность и вместе с командой создавать новое.»",
+        name: "Александр Амунц",
+        role: "CEO Trendsetter",
+      }),
+    ],
+  });
+
+export const cultureSection = (b: Builder): Block =>
+  b("doc_section", {
+    nav_label: "Культура",
+    title: "Кто мы и как устроен TRENDSETTER.",
+    content: [
+      b("off_price_plane", {
+        accent: "Мы — off-price ритейл нового поколения",
+        lead: "TRENDSETTER объединяет международные и локальные бренды, кураторский отбор и разумную цену в одном off-price формате — онлайн и в рознице. Наша задача — сделать сильные бренды доступнее, а выбор — понятным и интересным.",
+        principles: [
+          b("principle", {
+            title: "Кураторский подход",
+            text: "Отбираем ассортимент так, чтобы среди множества предложений было проще находить действительно стоящие вещи.",
+          }),
+          b("principle", {
+            title: "Ценность без переплаты",
+            text: "Сильные бренды, качество и современный опыт покупки — по цене, которая помогает выбирать разумно.",
+          }),
+          b("principle", {
+            title: "Регулярное обновление",
+            text: "Ассортимент постоянно обновляется, поэтому каждая покупка может приносить новую находку.",
+          }),
+        ],
+        note: "Off-price — растущий мировой формат. Мы развиваем его сразу в нескольких каналах — онлайн и в рознице, сохраняя общий принцип: сильные бренды, кураторский подход и доступная цена.",
+      }),
+
+      b("values_group", {
+        title: "Наши ценности",
+        items: [
+          b("value_tile", {
+            title: "Кураторство и поддержка",
+            text: "Помогаем друг другу расти, адаптироваться и находить решения.",
+            color: "red",
+            icon: "care",
+          }),
+          b("value_tile", {
+            title: "Свобода проявляться",
+            text: "Доверяем инициативе и даём пространство для собственных идей и решений.",
+            color: "blue",
+            icon: "free",
+          }),
+          b("value_tile", {
+            title: "Доступность и прозрачность",
+            text: "Открыто делимся информацией, целями и рабочим контекстом.",
+            color: "mint",
+            icon: "open",
+          }),
+          b("value_tile", {
+            title: "Постоянное движение",
+            text: "Учимся, меняемся и развиваемся вместе с бизнесом.",
+            color: "yellow",
+            icon: "move",
+          }),
+          b("value_tile", {
+            title: "Открытость новому",
+            text: "Пробуем новое, задаём вопросы и ищем лучшие подходы.",
+            color: "sage",
+            icon: "new",
+          }),
+          b("value_tile", {
+            title: "Единое сообщество",
+            text: "Работаем как одна команда и поддерживаем общий результат.",
+            color: "paper",
+            icon: "team",
+          }),
+        ],
+      }),
+
+      b("kpi_group", {
+        title: "О нас в цифрах",
+        items: [
+          b("kpi_tile", { label: "Выручка WB", value: "3.02 млрд ₽", note: "2024–2025" }),
+          b("kpi_tile", { label: "Товаров продано", value: "2 млн+" }),
+          b("kpi_tile", { label: "Рейтинг", value: "4.8 ★", note: "370 000+ отзывов" }),
+          b("kpi_tile", { label: "Продавец H&M в России", value: "#1" }),
+        ],
+      }),
+
+      b("timeline_group", {
+        title: "Как мы росли",
+        items: [
+          b("timeline_item", {
+            year: "2023",
+            text: "Начинаем с выкупа стоков H&M после ухода бренда с российского рынка.",
+          }),
+          b("timeline_item", {
+            year: "2024",
+            text: "Входим в топ-100 WB и становимся крупнейшим продавцом H&M в России.",
+          }),
+          b("timeline_item", {
+            year: "2025",
+            text: "Открываем первый розничный магазин в Ереване площадью 700 м² и расширяем портфель брендов.",
+          }),
+          b("timeline_item", {
+            year: "2026",
+            text: "Запускаем три магазина в Москве, развиваем СТМ и готовимся к дальнейшему масштабированию.",
+          }),
+        ],
+      }),
+
+      b("brands_group", {
+        title: "Наши бренды",
+        items: ["H&M", "Mothercare", "Lee Cooper", "ASOS DESIGN", "Timberland"].map((name) =>
+          b("brand_tile", { name })
+        ),
+      }),
+    ],
+  });
+
+export const feedbackGroup = (b: Builder): Block =>
+  b("feedback_group", {
+    title: "Окно обратной связи",
+    text: "Твой опыт помогает улучшать онбординг. Расскажи, чего не хватило, что оказалось особенно полезным и какие разделы, ссылки или подсказки стоит добавить для новых коллег.",
+    muted: "Поделиться предложениями можно через форму обратной связи.",
+    button_label: "Форма обратной связи",
+    button_link: link(),
+  });
+
+export const finalBanner = (b: Builder): Block =>
+  b("final_banner", {
+    label: "Финал / который на самом деле начало",
+    title: "Добро пожаловать в TRENDSETTER.",
+    text: "В начале достаточно быть любопытным и включённым. Знания и уверенность придут с опытом — мы поможем их собрать.",
+    button_label: "Let’s start",
+    button_link: link(),
+  });
+
+/** Общая рамка вопросов «Как устроен бизнес» - три пункта и у Office, и у Retail */
+export const businessQa = (b: Builder): Block =>
+  b("qa_group", {
+    title: "Как устроен бизнес",
+    items: ["Закупка и отборка", "Логистика и товародвижение", "Каналы продаж"].map((question) =>
+      b("qa_item", { question })
+    ),
+  });
+
+/** Три ссылки, которые есть у обеих версий: сайт, Instagram, Threads */
+export const socialLinks = (b: Builder): Block[] => [
+  b("resource_link", { kind: "Сайт", title: "Ссылка на сайт", link: link() }),
+  b("resource_link", { kind: "Соцсеть", title: "Instagram", link: link() }),
+  b("resource_link", { kind: "Соцсеть", title: "Threads", link: link() }),
+];

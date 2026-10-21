@@ -1,26 +1,247 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Токены взяты из Figma (TRENDSETTER WEB 2.0, «00 Основы» и стр. 05 Онбординг).
+   Имена цветов повторяют переменные макета: brand-red, brand-sage, neutral-*,
+   ext-*, accent-marker. Двух наборов размеров шрифта нет: «мобильный» набор
+   включается ниже 768px, «десктопный» — с 768px (см. @utility t-*). */
+@theme {
+  --color-red: #a22325;
+  --color-sage: #252120;
+  --color-white: #ffffff;
+  --color-text-2: #4a4644;
+  --color-paper: #f3f3f3;
+  --color-line: #d9d9d9;
+  --color-muted: #7e7e7e;
+  --color-marker: #f3d03e;
+  --color-blue: #1d428a;
+  --color-mint: #71cc98;
+  --color-yellow: #f3d03e;
+
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, monospace;
+
+  /* Боковое оглавление включается там, где есть место под него (≥ 1000px) */
+  --breakpoint-toc: 62.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  background: var(--color-white);
+  color: var(--color-sage);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ───────── Типографика: mobile / desktop (≥ 768px) ───────── */
+
+@utility t-h1 {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  @media (min-width: 48rem) {
+    font-size: 64px;
+  }
+}
+@utility t-h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  @media (min-width: 48rem) {
+    font-size: 40px;
+  }
+}
+@utility t-h3 {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  @media (min-width: 48rem) {
+    font-size: 28px;
+  }
+}
+@utility t-h4 {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.25;
+  @media (min-width: 48rem) {
+    font-size: 22px;
+  }
+}
+@utility t-display {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  @media (min-width: 48rem) {
+    font-size: 96px;
+  }
+}
+@utility t-body-l {
+  font-size: 17px;
+  line-height: 1.5;
+  @media (min-width: 48rem) {
+    font-size: 20px;
+  }
+}
+@utility t-body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+@utility t-body-s {
+  font-size: 14px;
+  line-height: 1.45;
+}
+/* Моно-капс: подписи, метки, номера */
+@utility t-caption {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  @media (min-width: 48rem) {
+    font-size: 12px;
+  }
+}
+@utility t-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  @media (min-width: 48rem) {
+    font-size: 16px;
+  }
+}
+@utility t-accent {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  @media (min-width: 48rem) {
+    font-size: 28px;
+  }
+}
+@utility t-button {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+/* Номера: моно, размер заголовка, интерлиньяж 1 */
+@utility t-num-h2 {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  line-height: 1;
+  @media (min-width: 48rem) {
+    font-size: 40px;
+  }
+}
+@utility t-num-h3 {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  line-height: 1;
+  @media (min-width: 48rem) {
+    font-size: 28px;
+  }
+}
+@utility t-num-h4 {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  line-height: 1;
+  @media (min-width: 48rem) {
+    font-size: 22px;
+  }
+}
+/* Значение плитки-цифры: на мобайле 22.4px */
+@utility t-kpi {
+  font-weight: 500;
+  font-size: 22.4px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  @media (min-width: 48rem) {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+}
+
+/* Отступы страницы: поля 16 → 40, колонка до 1440 */
+@utility gutter-x {
+  padding-inline: 16px;
+  @media (min-width: 48rem) {
+    padding-inline: 40px;
+  }
+}
+
+/* ───────── Анимации ───────── */
+
+/* Маркер «прорисовывается» слева направо: 900 ms, задержка 250 ms (макет, b2b-draw) */
+@keyframes marker-draw {
+  to {
+    background-size: 100% 100%;
+  }
+}
+.marker-draw {
+  background: linear-gradient(var(--color-marker), var(--color-marker)) no-repeat left
+    center / 0% 100%;
+  animation: marker-draw 900ms cubic-bezier(0.4, 0, 0.2, 1) 250ms forwards;
+}
+
+@keyframes year-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+.year-in {
+  animation: year-in 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Красная плоскость «кто мы» появляется при прокрутке: подъём 24px, 600 ms.
+   Только там, где браузер умеет scroll-driven animations; иначе стоит на месте. */
+@keyframes rise-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+@supports (animation-timeline: view()) {
+  .rise-in {
+    animation: rise-in 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marker-draw {
+    animation: none;
+    background-size: 100% 100%;
+  }
+  .year-in,
+  .rise-in {
+    animation: none;
+  }
+}
+
+/* Лента со свайпом: скроллбар не рисуем, жест остаётся */
+.lane {
+  scrollbar-width: none;
+}
+.lane::-webkit-scrollbar {
+  display: none;
 }

@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TRENDSETTER Welcome Book
 
-## Getting Started
+Сайт-онбординг для новых сотрудников: культура, первый день, ресурсы и FAQ. Две
+версии - **Office** (`/office`) и **Retail** (`/retail`) - на одних и тех же
+компонентах, разный только контент.
 
-First, run the development server:
+Дизайн: Figma «TRENDSETTER WEB 2.0», страница «05 Онбординг 19.10».
+Стек: Next.js 16 (App Router) · TypeScript · Tailwind 4 · Storyblok · Vercel.
+
+## Запуск
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm test           # vitest
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Без токена Storyblok сайт не падает: страницы берутся из локального seed-контента
+(`src/content/seed`). Чтобы работать с настоящим CMS, скопируйте `.env.example` в
+`.env.local` и впишите значения (репозиторий публичный - токены только там и в
+Environment Variables на Vercel).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Как устроено
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/
+    page.tsx               # временный выбор Office / Retail
+    [audience]/page.tsx    # /office, /retail - тонкая страница
+    api/preview            # вход из редактора Storyblok (draft mode)
+    api/revalidate         # вебхук Storyblok: сбросить кеш при публикации
+  components/
+    blocks/                # один файл = один блок Storyblok; index.tsx - реестр
+    ui/                    # примитивы дизайн-системы
+    layout/                # шапка, подвал, крошки, страница целиком
+  content/seed/            # контент Office и Retail в форме блоков Storyblok
+  lib/storyblok/           # клиент, fetchStory, getStory (CMS или seed)
+storyblok/components.json  # схема блоков для пространства
+scripts/                   # storyblok:push, storyblok:seed
+```
 
-## Learn More
+Правила - в `ARCHITECTURE.md` соседнего репозитория `trendsetter-website`: те же
+(один блок - один файл, страницы тонкие, секреты только в env).
 
-To learn more about Next.js, take a look at the following resources:
+## Контент в Storyblok
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Заведите пространство, пропишите `STORYBLOK_*` в `.env.local`.
+2. `npm run storyblok:push` - создаст блоки из `storyblok/components.json`.
+3. `npm run storyblok:seed` - зальёт страницы `office` и `retail` из seed.
+   Запускать на пустом пространстве: повторный запуск перезапишет правки редакторов.
+4. Settings → Visual Editor: адрес `https://<домен>/api/preview?secret=<STORYBLOK_PREVIEW_SECRET>&to=`.
+5. Settings → Webhooks: `https://<домен>/api/revalidate?secret=<STORYBLOK_REVALIDATE_SECRET>`
+   на события публикации и снятия с публикации.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Что считается само, редактор не ведёт: номера разделов `[01 / …]`, оглавление,
+сквозная нумерация групп в «Ресурсах» (у группы можно занять два номера, `01–02`).
 
-## Deploy on Vercel
+## Добавить блок
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Компонент в `src/components/blocks/` (получает готовые свойства, о CMS не знает).
+2. Схема в `storyblok/components.json`, имя компонента = технический код блока.
+3. Строка в таблице `DRAW` в `src/components/blocks/index.tsx`.
+4. `npm run storyblok:push`.
