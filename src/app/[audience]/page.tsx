@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { AUDIENCES, isAudience } from "@/lib/audiences";
 import { text } from "@/lib/blok";
 import { getStory } from "@/lib/storyblok/getStory";
 import { OnboardingPage } from "@/components/layout/OnboardingPage";
+import { LiveStory } from "@/components/layout/LiveStory";
 
 type Props = { params: Promise<{ audience: string }> };
 
@@ -37,6 +39,10 @@ export default async function AudiencePage({ params }: Props) {
 
   const story = await getStory(audience);
   if (!story) notFound();
+
+  // В Visual Editor страница слушает редактор (Bridge); у посетителей - нет
+  const { isEnabled: editing } = await draftMode();
+  if (editing) return <LiveStory storyId={story.id} content={story.content} />;
 
   return <OnboardingPage content={story.content} />;
 }

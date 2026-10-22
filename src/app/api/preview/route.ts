@@ -2,13 +2,13 @@ import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
 /**
- * The way in from Storyblok's editor: it opens the site through this address,
- * the browser is handed the cookie that turns draft mode on, and from then on
- * every story is read as it is being written rather than as it was published.
+ * Вход из редактора Storyblok: он открывает сайт по этому адресу, браузер
+ * получает cookie, включающую draft mode, и дальше каждая история читается так,
+ * как она пишется, а не как опубликована.
  *
- * Anyone holding the secret can read unpublished work, which is the whole point
- * and also the whole risk - it is a long random string in the environment, not
- * something to put in a link that leaves the editor.
+ * Тот, у кого есть секрет, читает неопубликованное - в этом весь смысл и весь
+ * риск, поэтому секрет - длинная случайная строка в окружении, а не то, что
+ * кладут в ссылку, которая уходит из редактора.
  */
 export async function GET(request: Request) {
   const secret = process.env.STORYBLOK_PREVIEW_SECRET;
@@ -24,14 +24,20 @@ export async function GET(request: Request) {
   const draft = await draftMode();
   draft.enable();
 
-  // The editor appends the story's own path, and the home story's path is
-  // "home", which is not an address on the site - its address is the root. Every
-  // other story's path is already the site's own, and the locale in front of it
-  // is added by the proxy.
+  // Редактор дописывает к адресу путь истории, а сразу за ним свои параметры
+  // (_storyblok, _storyblok_tk и др.), по которым Bridge на странице понимает,
+  // что он внутри редактора. Они попали в запрос к этому роуту, а нужны странице
+  // назначения, поэтому их переносим дальше; секрет и `to` - нет.
   const asked = url.searchParams.get("to") ?? "/";
   const to = asked.replace(/^\/?home\/?$/, "/");
 
-  // Only a path of our own, never wherever the address happens to point: an open
-  // redirect here would let the link be used to send people anywhere.
-  redirect(to.startsWith("/") && !to.startsWith("//") ? to : "/");
+  const forwarded = new URLSearchParams(url.searchParams);
+  forwarded.delete("secret");
+  forwarded.delete("to");
+  const query = forwarded.toString();
+
+  // Только свой путь, а не любой адрес: открытый редирект позволил бы
+  // использовать ссылку, чтобы отправлять людей куда угодно.
+  const path = to.startsWith("/") && !to.startsWith("//") ? to : "/";
+  redirect(query ? `${path}${path.includes("?") ? "&" : "?"}${query}` : path);
 }

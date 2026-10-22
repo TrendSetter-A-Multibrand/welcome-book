@@ -1,7 +1,7 @@
 import { SubTitle } from "@/components/ui/SubTitle";
 import { AccordionItem } from "@/components/ui/AccordionItem";
 
-export type QaItem = { question: string; answer: string[] };
+export type QaItem = { question: string; answer: React.ReactNode };
 
 /** Группа вопросов-ответов: номер, заголовок и аккордеон. Нумерация пунктов своя. */
 export function QaGroup({

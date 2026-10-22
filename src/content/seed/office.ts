@@ -90,8 +90,7 @@ export function officeContent(): Block {
   return {
     ...b("page", {
       header_label: "Onboarding · Office",
-      crumb_root: "Онбординг",
-      crumb: "Office",
+      crumbs: [b("crumb", { label: "Онбординг" }), b("crumb", { label: "Office" })],
       footer_text: "© 2026 TRENDSETTER · Onboarding · Office",
       feedback_link: link(LINKS.feedbackForm),
       meta_title: "Welcome Book · Office",

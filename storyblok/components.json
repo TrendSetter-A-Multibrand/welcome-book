@@ -11,28 +11,26 @@
         "description": "Например: Onboarding · Office",
         "pos": 0
       },
-      "crumb_root": {
-        "type": "text",
-        "display_name": "Хлебные крошки: корень",
-        "description": "Например: Онбординг",
+      "crumbs": {
+        "type": "bloks",
+        "display_name": "Хлебные крошки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "crumb"
+        ],
+        "description": "Уровни слева направо. Последний - текущая страница, без ссылки",
         "pos": 1
-      },
-      "crumb": {
-        "type": "text",
-        "display_name": "Хлебные крошки: текущая",
-        "description": "Например: Office",
-        "pos": 2
       },
       "footer_text": {
         "type": "text",
         "display_name": "Текст в подвале",
         "description": "Например: © 2026 TRENDSETTER · Onboarding · Office",
-        "pos": 3
+        "pos": 2
       },
       "feedback_link": {
         "type": "multilink",
         "display_name": "Ссылка «Обратная связь» в шапке",
-        "pos": 4
+        "pos": 3
       },
       "body": {
         "type": "bloks",
@@ -44,17 +42,17 @@
           "final_banner"
         ],
         "description": "Сверху вниз: шапка страницы, документ с разделами, финальный баннер",
-        "pos": 5
+        "pos": 4
       },
       "meta_title": {
         "type": "text",
         "display_name": "Заголовок для вкладки",
-        "pos": 6
+        "pos": 5
       },
       "meta_description": {
         "type": "textarea",
         "display_name": "Описание страницы",
-        "pos": 7
+        "pos": 6
       }
     }
   },
@@ -715,8 +713,310 @@
       },
       "answer": {
         "type": "textarea",
-        "display_name": "Ответ",
-        "description": "Пустая строка начинает новый абзац. Пока ответа нет, пункт не раскрывается",
+        "display_name": "Ответ (абзацы)",
+        "description": "Пустая строка - новый абзац. Внутри строки: **жирный** и [текст ссылки](https://адрес). Пока нет ни текста, ни блоков ниже, пункт не раскрывается",
+        "pos": 1
+      },
+      "blocks": {
+        "type": "bloks",
+        "display_name": "Дополнительные блоки ответа",
+        "restrict_components": true,
+        "component_whitelist": [
+          "answer_text",
+          "answer_heading",
+          "answer_list",
+          "answer_note",
+          "answer_facts",
+          "answer_contacts",
+          "answer_place",
+          "answer_image",
+          "answer_button"
+        ],
+        "description": "Идут под абзацами по порядку: список, врезка, факты, контакты, фото и др.",
+        "pos": 2
+      }
+    }
+  },
+  {
+    "name": "crumb",
+    "display_name": "Уровень крошек",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Название",
+        "required": true,
+        "pos": 0
+      },
+      "link": {
+        "type": "multilink",
+        "display_name": "Ссылка",
+        "description": "Необязательно; у последнего уровня ссылка не нужна",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "answer_text",
+    "display_name": "Ответ: текст",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "required": true,
+        "description": "Пустая строка - новый абзац. **жирный**, [ссылка](https://адрес)",
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "answer_heading",
+    "display_name": "Ответ: подзаголовок",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "text": {
+        "type": "text",
+        "display_name": "Подзаголовок",
+        "required": true,
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "answer_list",
+    "display_name": "Ответ: список",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "style": {
+        "type": "option",
+        "display_name": "Вид",
+        "source": "self",
+        "options": [
+          {
+            "name": "С тире",
+            "value": "dash"
+          },
+          {
+            "name": "Нумерованный",
+            "value": "numbered"
+          }
+        ],
+        "default_value": "dash",
+        "pos": 0
+      },
+      "items": {
+        "type": "textarea",
+        "display_name": "Пункты",
+        "required": true,
+        "description": "Один пункт - одна строка",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "answer_note",
+    "display_name": "Ответ: врезка",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Метка",
+        "default_value": "Справка",
+        "description": "Без скобок",
+        "pos": 0
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Текст",
+        "required": true,
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "answer_facts",
+    "display_name": "Ответ: факты",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "items": {
+        "type": "bloks",
+        "display_name": "Строки",
+        "restrict_components": true,
+        "component_whitelist": [
+          "answer_fact"
+        ],
+        "description": "Адрес, часы, телефон - только проверенные данные",
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "answer_fact",
+    "display_name": "Факт",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Подпись",
+        "required": true,
+        "pos": 0
+      },
+      "value": {
+        "type": "text",
+        "display_name": "Значение",
+        "required": true,
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "answer_contacts",
+    "display_name": "Ответ: контакты",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "items": {
+        "type": "bloks",
+        "display_name": "Группы контактов",
+        "restrict_components": true,
+        "component_whitelist": [
+          "answer_contact"
+        ],
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "answer_contact",
+    "display_name": "Группа контактов",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Подпись",
+        "required": true,
+        "description": "Без скобок, например: По вопросам отпуска",
+        "pos": 0
+      },
+      "lines": {
+        "type": "textarea",
+        "display_name": "Строки",
+        "required": true,
+        "description": "Одна строка - один контакт. Почта и телефон - ссылкой: [hr@x.ru](mailto:hr@x.ru)",
+        "pos": 1
+      }
+    }
+  },
+  {
+    "name": "answer_place",
+    "display_name": "Ответ: как добраться",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Метка",
+        "default_value": "Как добраться",
+        "description": "Без скобок",
+        "pos": 0
+      },
+      "place": {
+        "type": "text",
+        "display_name": "Место",
+        "required": true,
+        "description": "Например: ТЦ «Авеню Север»",
+        "pos": 1
+      },
+      "address": {
+        "type": "text",
+        "display_name": "Адрес",
+        "pos": 2
+      },
+      "button_label": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "default_value": "Построить маршрут",
+        "pos": 3
+      },
+      "button_link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт кнопка",
+        "description": "Яндекс Карты или другой маршрут",
+        "pos": 4
+      }
+    }
+  },
+  {
+    "name": "answer_image",
+    "display_name": "Ответ: фото",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "image": {
+        "type": "asset",
+        "filetypes": [
+          "images"
+        ],
+        "display_name": "Фото",
+        "pos": 0
+      },
+      "ratio": {
+        "type": "option",
+        "display_name": "Пропорции",
+        "source": "self",
+        "options": [
+          {
+            "name": "4:3 (по умолчанию)",
+            "value": "4:3"
+          },
+          {
+            "name": "16:9",
+            "value": "16:9"
+          },
+          {
+            "name": "1:1",
+            "value": "1:1"
+          },
+          {
+            "name": "21:9",
+            "value": "21:9"
+          }
+        ],
+        "default_value": "4:3",
+        "pos": 1
+      },
+      "caption": {
+        "type": "text",
+        "display_name": "Подпись под фото",
+        "pos": 2
+      }
+    }
+  },
+  {
+    "name": "answer_button",
+    "display_name": "Ответ: кнопка",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "required": true,
+        "pos": 0
+      },
+      "link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт",
+        "required": true,
         "pos": 1
       }
     }

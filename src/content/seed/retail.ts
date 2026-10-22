@@ -77,8 +77,7 @@ export function retailContent(): Block {
   return {
     ...b("page", {
       header_label: "Onboarding · Retail",
-      crumb_root: "Онбординг",
-      crumb: "Retail",
+      crumbs: [b("crumb", { label: "Онбординг" }), b("crumb", { label: "Retail" })],
       footer_text: "© 2026 TRENDSETTER · Onboarding · Retail",
       feedback_link: link(LINKS.feedbackForm),
       meta_title: "Welcome Book · Retail",

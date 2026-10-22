@@ -18,7 +18,8 @@ export function AccordionItem({
 }: {
   number: string;
   question: string;
-  answer: string[];
+  /** Готовый ответ: абзацы и блоки. Нет ответа - null, и пункт не раскрывается */
+  answer: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const panel = useId();
@@ -32,7 +33,7 @@ export function AccordionItem({
     </>
   );
 
-  if (!answer.length) {
+  if (!answer) {
     return (
       <div className="flex min-h-14 items-baseline gap-3 border-t border-line py-4 first:border-t-0 md:gap-4">
         {head}
@@ -62,11 +63,7 @@ export function AccordionItem({
       >
         <div className="overflow-hidden">
           <div className="flex max-w-[720px] flex-col gap-4 pb-6 pl-8 md:pl-[47px]">
-            {answer.map((paragraph) => (
-              <p key={paragraph} className="t-body text-text-2">
-                {paragraph}
-              </p>
-            ))}
+            {answer}
           </div>
         </div>
       </div>
