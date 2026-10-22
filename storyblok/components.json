@@ -93,6 +93,13 @@
         "type": "textarea",
         "display_name": "Вводный текст",
         "pos": 5
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -153,6 +160,13 @@
           "resources_frame"
         ],
         "pos": 3
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -187,6 +201,13 @@
         "display_name": "Фото",
         "description": "Квадратное; пока нет - серая заглушка",
         "pos": 3
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -222,6 +243,13 @@
         "type": "textarea",
         "display_name": "Примечание",
         "pos": 3
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -241,6 +269,13 @@
         "type": "textarea",
         "display_name": "Текст",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -264,6 +299,13 @@
           "value_tile"
         ],
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -348,6 +390,13 @@
           }
         ],
         "pos": 3
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -372,6 +421,13 @@
         ],
         "description": "Только подтверждённые цифры",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -398,6 +454,13 @@
         "display_name": "Второй чип (период, источник)",
         "description": "Необязательно",
         "pos": 2
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -421,6 +484,13 @@
           "timeline_item"
         ],
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -441,6 +511,13 @@
         "display_name": "Текст",
         "required": true,
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -464,6 +541,13 @@
           "brand_tile"
         ],
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -487,6 +571,13 @@
         "display_name": "Логотип",
         "description": "Только официальные файлы бренда",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -504,6 +595,13 @@
           "step_tile"
         ],
         "pos": 0
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -566,6 +664,13 @@
           }
         ],
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -591,6 +696,13 @@
         ],
         "description": "Нумеруются по порядку. Группе можно отдать два номера (01–02)",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -621,6 +733,13 @@
           "resource_link"
         ],
         "pos": 2
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -667,6 +786,13 @@
         "type": "multilink",
         "display_name": "Куда ведёт",
         "pos": 4
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -696,6 +822,13 @@
           "qa_item"
         ],
         "pos": 2
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -734,6 +867,13 @@
         ],
         "description": "Идут под абзацами по порядку: список, врезка, факты, контакты, фото и др.",
         "pos": 2
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -754,6 +894,13 @@
         "display_name": "Ссылка",
         "description": "Необязательно; у последнего уровня ссылка не нужна",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -769,6 +916,13 @@
         "required": true,
         "description": "Пустая строка - новый абзац. **жирный**, [ссылка](https://адрес)",
         "pos": 0
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -783,6 +937,13 @@
         "display_name": "Подзаголовок",
         "required": true,
         "pos": 0
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -815,6 +976,13 @@
         "required": true,
         "description": "Один пункт - одна строка",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -836,6 +1004,13 @@
         "display_name": "Текст",
         "required": true,
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -854,6 +1029,13 @@
         ],
         "description": "Адрес, часы, телефон - только проверенные данные",
         "pos": 0
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -874,6 +1056,13 @@
         "display_name": "Значение",
         "required": true,
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -891,6 +1080,13 @@
           "answer_contact"
         ],
         "pos": 0
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -913,6 +1109,13 @@
         "required": true,
         "description": "Одна строка - один контакт. Почта и телефон - ссылкой: [hr@x.ru](mailto:hr@x.ru)",
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -952,6 +1155,13 @@
         "display_name": "Куда ведёт кнопка",
         "description": "Яндекс Карты или другой маршрут",
         "pos": 4
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -998,6 +1208,13 @@
         "type": "text",
         "display_name": "Подпись под фото",
         "pos": 2
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -1018,6 +1235,13 @@
         "display_name": "Куда ведёт",
         "required": true,
         "pos": 1
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -1058,6 +1282,13 @@
         "type": "multilink",
         "display_name": "Куда ведёт кнопка",
         "pos": 5
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   },
@@ -1093,6 +1324,13 @@
         "type": "multilink",
         "display_name": "Куда ведёт кнопка",
         "pos": 4
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 999
       }
     }
   }

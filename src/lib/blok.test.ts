@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { href, image, isExternal, paragraphs, text } from "@/lib/blok";
+import { href, image, isExternal, nested, paragraphs, text } from "@/lib/blok";
 
 describe("text", () => {
   it("пустую и пробельную строку считает отсутствием", () => {
@@ -55,5 +55,18 @@ describe("paragraphs", () => {
   it("делит по пустой строке и выбрасывает пустое", () => {
     expect(paragraphs("раз\n\n  два \n\n\n три")).toEqual(["раз", "два", "три"]);
     expect(paragraphs(undefined)).toEqual([]);
+  });
+});
+
+describe("nested", () => {
+  const blok = (hidden?: unknown) => ({ _uid: "u", component: "x", hidden });
+
+  it("отбрасывает скрытые блоки, остальные оставляет по порядку", () => {
+    const list = [blok(false), blok(true), blok("true"), blok(undefined), blok("")];
+    expect(nested(list)).toHaveLength(3);
+  });
+
+  it("пустое и чужое поле даёт пустой список", () => {
+    expect(nested(undefined)).toEqual([]);
   });
 });

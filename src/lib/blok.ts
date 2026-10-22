@@ -10,8 +10,21 @@ import type { Block } from "@/lib/storyblok/fetchStory";
 export const text = (value: unknown) =>
   typeof value === "string" && value.trim() ? value : undefined;
 
-/** Вложенные блоки поля, что бы редактор туда ни положил */
-export const nested = (value: unknown) => (value as Block[] | undefined) ?? [];
+/**
+ * Блок скрыт галочкой «Скрыть на сайте». В Storyblok у блока внутри списка нет
+ * своего выключателя, поэтому он заведён полем `hidden`: блок остаётся на месте
+ * и со всем своим содержимым, а на сайт не попадает.
+ */
+export const isHidden = (blok: Block) =>
+  blok.hidden === true || blok.hidden === "true";
+
+/**
+ * Вложенные блоки поля, что бы редактор туда ни положил. Скрытые отбрасываются
+ * здесь, на единственном входе: остальной код их не видит, а нумерация разделов,
+ * оглавление и пункты сквозной нумерации пересчитываются сами.
+ */
+export const nested = (value: unknown) =>
+  ((value as Block[] | undefined) ?? []).filter((blok) => !isHidden(blok));
 
 /**
  * Пустое поле-картинка всё равно приходит объектом, поэтому о том, выбрано ли
