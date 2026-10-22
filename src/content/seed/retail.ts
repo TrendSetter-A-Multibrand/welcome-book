@@ -6,6 +6,7 @@ import {
   feedbackGroup,
   finalBanner,
   greetingSection,
+  LINKS,
   pageHead,
   socialLinks,
 } from "./sections.ts";
@@ -79,7 +80,7 @@ export function retailContent(): Block {
       crumb_root: "Онбординг",
       crumb: "Retail",
       footer_text: "© 2026 TRENDSETTER · Onboarding · Retail",
-      feedback_link: link(),
+      feedback_link: link(LINKS.feedbackForm),
       meta_title: "Welcome Book · Retail",
       meta_description:
         "Онбординг для сотрудников магазинов TRENDSETTER: культура, первый день, ресурсы и ответы на вопросы.",

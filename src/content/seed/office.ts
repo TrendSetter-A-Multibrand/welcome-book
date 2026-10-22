@@ -6,6 +6,7 @@ import {
   feedbackGroup,
   finalBanner,
   greetingSection,
+  LINKS,
   pageHead,
   socialLinks,
 } from "./sections.ts";
@@ -54,7 +55,7 @@ export function officeContent(): Block {
                 title: "Карта команды",
                 text: "Здесь — структура команды: кто за что отвечает, как связаны функции и к кому обращаться по конкретным вопросам.",
                 action: "Открыть карту команды",
-                link: link(),
+                link: link(LINKS.teamMap),
               }),
               ...socialLinks(b),
             ],
@@ -92,7 +93,7 @@ export function officeContent(): Block {
       crumb_root: "Онбординг",
       crumb: "Office",
       footer_text: "© 2026 TRENDSETTER · Onboarding · Office",
-      feedback_link: link(),
+      feedback_link: link(LINKS.feedbackForm),
       meta_title: "Welcome Book · Office",
       meta_description:
         "Онбординг для сотрудников офиса TRENDSETTER: культура, первый день, ресурсы и ответы на вопросы.",

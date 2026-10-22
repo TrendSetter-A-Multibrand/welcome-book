@@ -14,7 +14,7 @@ export function StepTile({
   icon?: string;
 }) {
   return (
-    <li className="flex min-h-[72px] items-center gap-4 bg-paper p-4 @min-[640px]:h-[220px] @min-[640px]:flex-col @min-[640px]:items-stretch @min-[640px]:justify-between @min-[640px]:p-6">
+    <li className="flex min-h-[72px] items-center gap-4 bg-paper p-4 @min-[640px]:min-h-[220px] @min-[640px]:flex-col @min-[640px]:items-stretch @min-[640px]:justify-between @min-[640px]:gap-6 @min-[640px]:p-6">
       <div className="flex shrink-0 items-center gap-3 @min-[640px]:justify-between">
         <span className="t-num-h2 text-red">{number}</span>
         {icon ? (

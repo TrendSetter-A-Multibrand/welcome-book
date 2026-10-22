@@ -18,9 +18,12 @@ export function B2BHeader({
         <Logo color="red" className="w-[120px] md:w-[176px]" />
         <p className="t-caption text-text-2">{label}</p>
       </div>
-      <div className="hidden md:block">
-        <LinkArrow href={feedbackHref}>Обратная связь</LinkArrow>
-      </div>
+      {/* Без адреса ссылки нет: пустая «Обратная связь» вела бы в никуда */}
+      {feedbackHref !== "#" ? (
+        <div className="hidden md:block">
+          <LinkArrow href={feedbackHref}>Обратная связь</LinkArrow>
+        </div>
+      ) : null}
     </header>
   );
 }

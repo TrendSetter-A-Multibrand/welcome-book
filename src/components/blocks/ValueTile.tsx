@@ -31,7 +31,7 @@ export function ValueTile({
 }) {
   return (
     <li
-      className={`flex h-[280px] w-[280px] shrink-0 snap-start flex-col justify-between p-8 md:h-[300px] @min-[640px]:w-auto ${VALUE_COLORS[color]}`}
+      className={`flex min-h-[280px] w-[280px] shrink-0 snap-start flex-col justify-between gap-6 p-8 md:min-h-[300px] @min-[640px]:w-auto ${VALUE_COLORS[color]}`}
     >
       <div className="flex items-center justify-between gap-3">
         <span className="t-num-h2 text-[40px]">{number}</span>

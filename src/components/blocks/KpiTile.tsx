@@ -14,7 +14,7 @@ export function KpiTile({
   note?: string;
 }) {
   return (
-    <li className="flex h-[168px] flex-col items-start justify-between border border-sage bg-white p-4 md:h-[240px] md:p-6">
+    <li className="flex min-h-[168px] flex-col items-start justify-between gap-4 border border-sage bg-white p-4 md:min-h-[240px] md:p-6">
       <Tag>{label}</Tag>
       <div className="flex flex-col items-start gap-2">
         <span className="t-kpi whitespace-nowrap text-red @min-[760px]:whitespace-normal">

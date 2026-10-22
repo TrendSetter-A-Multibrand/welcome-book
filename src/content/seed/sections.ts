@@ -8,6 +8,15 @@ import { link } from "./blok.ts";
  * только «Первый день» и «Ресурсы» - они лежат в office.ts и retail.ts.
  */
 
+/** Адреса, которые уже известны. Ссылка на сайт появится, когда сайт будет готов. */
+export const LINKS = {
+  feedbackForm: "https://forms.gle/iK8n6tVpNbFKcJBH7",
+  teamMap:
+    "https://sites.google.com/trendsettercrew.com/team/%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0",
+  instagram: "https://www.instagram.com/trendsetter_russia/",
+  threads: "https://www.threads.com/@trendsetter_russia",
+} as const;
+
 export const pageHead = (b: Builder): Block =>
   b("page_head", {
     tag: "Onboarding",
@@ -147,7 +156,7 @@ export const feedbackGroup = (b: Builder): Block =>
     text: "Твой опыт помогает улучшать онбординг. Расскажи, чего не хватило, что оказалось особенно полезным и какие разделы, ссылки или подсказки стоит добавить для новых коллег.",
     muted: "Поделиться предложениями можно через форму обратной связи.",
     button_label: "Форма обратной связи",
-    button_link: link(),
+    button_link: link(LINKS.feedbackForm),
   });
 
 export const finalBanner = (b: Builder): Block =>
@@ -171,6 +180,6 @@ export const businessQa = (b: Builder): Block =>
 /** Три ссылки, которые есть у обеих версий: сайт, Instagram, Threads */
 export const socialLinks = (b: Builder): Block[] => [
   b("resource_link", { kind: "Сайт", title: "Ссылка на сайт", link: link() }),
-  b("resource_link", { kind: "Соцсеть", title: "Instagram", link: link() }),
-  b("resource_link", { kind: "Соцсеть", title: "Threads", link: link() }),
+  b("resource_link", { kind: "Соцсеть", title: "Instagram", link: link(LINKS.instagram) }),
+  b("resource_link", { kind: "Соцсеть", title: "Threads", link: link(LINKS.threads) }),
 ];
