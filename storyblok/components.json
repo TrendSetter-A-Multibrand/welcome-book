@@ -66,40 +66,40 @@
         "type": "text",
         "display_name": "Метка",
         "description": "Без скобок: скобки добавляются сами",
-        "pos": 0
+        "pos": 1
       },
       "greeting": {
         "type": "text",
         "display_name": "Приветствие рядом с меткой",
-        "pos": 1
+        "pos": 2
       },
       "title_before": {
         "type": "text",
         "display_name": "Заголовок: до маркера",
-        "pos": 2
+        "pos": 3
       },
       "title_highlight": {
         "type": "text",
         "display_name": "Заголовок: слова на жёлтом маркере",
         "description": "Одна главная мысль",
-        "pos": 3
+        "pos": 4
       },
       "title_after": {
         "type": "text",
         "display_name": "Заголовок: после маркера",
-        "pos": 4
+        "pos": 5
       },
       "intro": {
         "type": "textarea",
         "display_name": "Вводный текст",
-        "pos": 5
+        "pos": 6
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Шапка страницы»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -131,19 +131,19 @@
         "type": "text",
         "display_name": "Название в оглавлении и метке",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "title": {
         "type": "text",
         "display_name": "Заголовок раздела",
         "description": "Необязательно",
-        "pos": 1
+        "pos": 2
       },
       "lead": {
         "type": "textarea",
         "display_name": "Вводный абзац",
         "description": "Необязательно",
-        "pos": 2
+        "pos": 3
       },
       "content": {
         "type": "bloks",
@@ -159,14 +159,14 @@
           "steps_group",
           "resources_frame"
         ],
-        "pos": 3
+        "pos": 4
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: весь раздел вместе со всем содержимым",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -180,18 +180,18 @@
         "type": "textarea",
         "display_name": "Цитата",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "name": {
         "type": "text",
         "display_name": "Имя",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "role": {
         "type": "text",
         "display_name": "Должность",
-        "pos": 2
+        "pos": 3
       },
       "photo": {
         "type": "asset",
@@ -200,14 +200,14 @@
         ],
         "display_name": "Фото",
         "description": "Квадратное; пока нет - серая заглушка",
-        "pos": 3
+        "pos": 4
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Письмо CEO»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -221,13 +221,13 @@
         "type": "text",
         "display_name": "Акцент моно-капсом",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "lead": {
         "type": "textarea",
         "display_name": "Лид",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "principles": {
         "type": "bloks",
@@ -237,19 +237,19 @@
           "principle"
         ],
         "description": "Рекомендуем три",
-        "pos": 2
+        "pos": 3
       },
       "note": {
         "type": "textarea",
         "display_name": "Примечание",
-        "pos": 3
+        "pos": 4
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Красная плоскость «кто мы»»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -263,19 +263,19 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "text": {
         "type": "textarea",
         "display_name": "Текст",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Принцип»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -289,7 +289,7 @@
         "type": "text",
         "display_name": "Подзаголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "items": {
         "type": "bloks",
@@ -298,14 +298,14 @@
         "component_whitelist": [
           "value_tile"
         ],
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ценности»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -319,12 +319,12 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "text": {
         "type": "textarea",
         "display_name": "Текст",
-        "pos": 1
+        "pos": 2
       },
       "color": {
         "type": "option",
@@ -357,7 +357,7 @@
           }
         ],
         "default_value": "red",
-        "pos": 2
+        "pos": 3
       },
       "icon": {
         "type": "option",
@@ -389,14 +389,14 @@
             "value": "team"
           }
         ],
-        "pos": 3
+        "pos": 4
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Плитка ценности»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -410,7 +410,7 @@
         "type": "text",
         "display_name": "Подзаголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "items": {
         "type": "bloks",
@@ -420,14 +420,14 @@
           "kpi_tile"
         ],
         "description": "Только подтверждённые цифры",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Цифры»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -441,26 +441,26 @@
         "type": "text",
         "display_name": "Подпись",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "value": {
         "type": "text",
         "display_name": "Значение",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "note": {
         "type": "text",
         "display_name": "Второй чип (период, источник)",
         "description": "Необязательно",
-        "pos": 2
+        "pos": 3
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Плитка цифры»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -474,7 +474,7 @@
         "type": "text",
         "display_name": "Подзаголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "items": {
         "type": "bloks",
@@ -483,14 +483,14 @@
         "component_whitelist": [
           "timeline_item"
         ],
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Таймлайн»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -504,20 +504,20 @@
         "type": "text",
         "display_name": "Год",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "text": {
         "type": "textarea",
         "display_name": "Текст",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Веха»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -531,7 +531,7 @@
         "type": "text",
         "display_name": "Подзаголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "items": {
         "type": "bloks",
@@ -540,14 +540,14 @@
         "component_whitelist": [
           "brand_tile"
         ],
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Бренды»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -561,7 +561,7 @@
         "type": "text",
         "display_name": "Название",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "logo": {
         "type": "asset",
@@ -570,14 +570,14 @@
         ],
         "display_name": "Логотип",
         "description": "Только официальные файлы бренда",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Плитка бренда»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -594,14 +594,14 @@
         "component_whitelist": [
           "step_tile"
         ],
-        "pos": 0
+        "pos": 1
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Шаги первого дня»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -615,7 +615,7 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "icon": {
         "type": "option",
@@ -663,14 +663,14 @@
             "value": "spark"
           }
         ],
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Шаг»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -683,7 +683,7 @@
       "title": {
         "type": "text",
         "display_name": "Заголовок рамки",
-        "pos": 0
+        "pos": 1
       },
       "groups": {
         "type": "bloks",
@@ -695,14 +695,14 @@
           "feedback_group"
         ],
         "description": "Нумеруются по порядку. Группе можно отдать два номера (01–02)",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Рамка «Ресурсы»»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -716,14 +716,14 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "number_span": {
         "type": "number",
         "display_name": "Сколько номеров занимает",
         "description": "1 - обычно; 2 - «01–02»",
         "default_value": "1",
-        "pos": 1
+        "pos": 2
       },
       "links": {
         "type": "bloks",
@@ -732,14 +732,14 @@
         "component_whitelist": [
           "resource_link"
         ],
-        "pos": 2
+        "pos": 3
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Группа ссылок»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -764,35 +764,35 @@
           }
         ],
         "default_value": "Сайт",
-        "pos": 0
+        "pos": 1
       },
       "title": {
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "text": {
         "type": "textarea",
         "display_name": "Пояснение",
-        "pos": 2
+        "pos": 3
       },
       "action": {
         "type": "text",
         "display_name": "Подпись у стрелки (десктоп)",
-        "pos": 3
+        "pos": 4
       },
       "link": {
         "type": "multilink",
         "display_name": "Куда ведёт",
-        "pos": 4
+        "pos": 5
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ссылка»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -806,13 +806,13 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "number_span": {
         "type": "number",
         "display_name": "Сколько номеров занимает",
         "default_value": "1",
-        "pos": 1
+        "pos": 2
       },
       "items": {
         "type": "bloks",
@@ -821,14 +821,14 @@
         "component_whitelist": [
           "qa_item"
         ],
-        "pos": 2
+        "pos": 3
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Группа вопросов»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -842,13 +842,13 @@
         "type": "text",
         "display_name": "Вопрос",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "answer": {
         "type": "textarea",
         "display_name": "Ответ (абзацы)",
         "description": "Пустая строка - новый абзац. Внутри строки: **жирный** и [текст ссылки](https://адрес). Пока нет ни текста, ни блоков ниже, пункт не раскрывается",
-        "pos": 1
+        "pos": 2
       },
       "blocks": {
         "type": "bloks",
@@ -866,14 +866,14 @@
           "answer_button"
         ],
         "description": "Идут под абзацами по порядку: список, врезка, факты, контакты, фото и др.",
-        "pos": 2
+        "pos": 3
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Вопрос»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -887,20 +887,20 @@
         "type": "text",
         "display_name": "Название",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "link": {
         "type": "multilink",
         "display_name": "Ссылка",
         "description": "Необязательно; у последнего уровня ссылка не нужна",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Уровень крошек»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -915,14 +915,14 @@
         "display_name": "Текст",
         "required": true,
         "description": "Пустая строка - новый абзац. **жирный**, [ссылка](https://адрес)",
-        "pos": 0
+        "pos": 1
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: текст»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -936,14 +936,14 @@
         "type": "text",
         "display_name": "Подзаголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: подзаголовок»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -968,21 +968,21 @@
           }
         ],
         "default_value": "dash",
-        "pos": 0
+        "pos": 1
       },
       "items": {
         "type": "textarea",
         "display_name": "Пункты",
         "required": true,
         "description": "Один пункт - одна строка",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: список»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -997,20 +997,20 @@
         "display_name": "Метка",
         "default_value": "Справка",
         "description": "Без скобок",
-        "pos": 0
+        "pos": 1
       },
       "text": {
         "type": "textarea",
         "display_name": "Текст",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: врезка»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1028,14 +1028,14 @@
           "answer_fact"
         ],
         "description": "Адрес, часы, телефон - только проверенные данные",
-        "pos": 0
+        "pos": 1
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: факты»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1049,20 +1049,20 @@
         "type": "text",
         "display_name": "Подпись",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "value": {
         "type": "text",
         "display_name": "Значение",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Факт»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1079,14 +1079,14 @@
         "component_whitelist": [
           "answer_contact"
         ],
-        "pos": 0
+        "pos": 1
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: контакты»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1101,21 +1101,21 @@
         "display_name": "Подпись",
         "required": true,
         "description": "Без скобок, например: По вопросам отпуска",
-        "pos": 0
+        "pos": 1
       },
       "lines": {
         "type": "textarea",
         "display_name": "Строки",
         "required": true,
         "description": "Одна строка - один контакт. Почта и телефон - ссылкой: [hr@x.ru](mailto:hr@x.ru)",
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Группа контактов»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1130,38 +1130,38 @@
         "display_name": "Метка",
         "default_value": "Как добраться",
         "description": "Без скобок",
-        "pos": 0
+        "pos": 1
       },
       "place": {
         "type": "text",
         "display_name": "Место",
         "required": true,
         "description": "Например: ТЦ «Авеню Север»",
-        "pos": 1
+        "pos": 2
       },
       "address": {
         "type": "text",
         "display_name": "Адрес",
-        "pos": 2
+        "pos": 3
       },
       "button_label": {
         "type": "text",
         "display_name": "Текст кнопки",
         "default_value": "Построить маршрут",
-        "pos": 3
+        "pos": 4
       },
       "button_link": {
         "type": "multilink",
         "display_name": "Куда ведёт кнопка",
         "description": "Яндекс Карты или другой маршрут",
-        "pos": 4
+        "pos": 5
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: как добраться»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1177,7 +1177,7 @@
           "images"
         ],
         "display_name": "Фото",
-        "pos": 0
+        "pos": 1
       },
       "ratio": {
         "type": "option",
@@ -1202,19 +1202,19 @@
           }
         ],
         "default_value": "4:3",
-        "pos": 1
+        "pos": 2
       },
       "caption": {
         "type": "text",
         "display_name": "Подпись под фото",
-        "pos": 2
+        "pos": 3
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: фото»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1228,20 +1228,20 @@
         "type": "text",
         "display_name": "Текст кнопки",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "link": {
         "type": "multilink",
         "display_name": "Куда ведёт",
         "required": true,
-        "pos": 1
+        "pos": 2
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Ответ: кнопка»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
+        "pos": 0
       }
     }
   },
@@ -1255,22 +1255,64 @@
         "type": "text",
         "display_name": "Заголовок",
         "required": true,
-        "pos": 0
+        "pos": 1
       },
       "number_span": {
         "type": "number",
         "display_name": "Сколько номеров занимает",
         "default_value": "1",
-        "pos": 1
+        "pos": 2
       },
       "text": {
         "type": "textarea",
         "display_name": "Текст",
-        "pos": 2
+        "pos": 3
       },
       "muted": {
         "type": "textarea",
         "display_name": "Пояснение серым",
+        "pos": 4
+      },
+      "button_label": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "pos": 5
+      },
+      "button_link": {
+        "type": "multilink",
+        "display_name": "Куда ведёт кнопка",
+        "pos": 6
+      },
+      "hidden": {
+        "type": "boolean",
+        "display_name": "Скрыть на сайте: блок «Окно обратной связи»",
+        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
+        "default_value": false,
+        "pos": 0
+      }
+    }
+  },
+  {
+    "name": "final_banner",
+    "display_name": "Финальный баннер",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Метка",
+        "description": "Без скобок",
+        "pos": 1
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "required": true,
+        "pos": 2
+      },
+      "text": {
+        "type": "textarea",
+        "display_name": "Лид",
         "pos": 3
       },
       "button_label": {
@@ -1285,52 +1327,10 @@
       },
       "hidden": {
         "type": "boolean",
-        "display_name": "Скрыть на сайте",
+        "display_name": "Скрыть на сайте: блок «Финальный баннер»",
         "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
         "default_value": false,
-        "pos": 999
-      }
-    }
-  },
-  {
-    "name": "final_banner",
-    "display_name": "Финальный баннер",
-    "is_root": false,
-    "is_nestable": true,
-    "schema": {
-      "label": {
-        "type": "text",
-        "display_name": "Метка",
-        "description": "Без скобок",
         "pos": 0
-      },
-      "title": {
-        "type": "text",
-        "display_name": "Заголовок",
-        "required": true,
-        "pos": 1
-      },
-      "text": {
-        "type": "textarea",
-        "display_name": "Лид",
-        "pos": 2
-      },
-      "button_label": {
-        "type": "text",
-        "display_name": "Текст кнопки",
-        "pos": 3
-      },
-      "button_link": {
-        "type": "multilink",
-        "display_name": "Куда ведёт кнопка",
-        "pos": 4
-      },
-      "hidden": {
-        "type": "boolean",
-        "display_name": "Скрыть на сайте",
-        "description": "Блок остаётся в Storyblok со всем содержимым, но на сайте не показывается. Снимите галочку, чтобы вернуть",
-        "default_value": false,
-        "pos": 999
       }
     }
   }

@@ -73,3 +73,31 @@ describe("лишнее в содержимом", () => {
     expect(out).toBe("");
   });
 });
+
+describe("скрытые блоки", () => {
+  const hide = (content: ReturnType<typeof officeContent>, component: string) => {
+    const doc = nested(content.body).find((b) => b.component === "doc")!;
+    for (const section of doc.sections as Array<Record<string, unknown>>) {
+      for (const item of section.content as Array<Record<string, unknown>>) {
+        if (item.component === component) item.hidden = true;
+      }
+    }
+    return content;
+  };
+
+  it("скрытые «Ценности» исчезают, а раздел «Культура» остаётся", () => {
+    const page = html(hide(officeContent(), "values_group"));
+    expect(page).not.toContain("Наши ценности");
+    expect(page).toContain("[02 / Культура]");
+    expect(page).toContain("О нас в цифрах");
+  });
+
+  it("скрытый раздел уходит из оглавления, номера сдвигаются", () => {
+    const content = officeContent();
+    const doc = nested(content.body).find((b) => b.component === "doc")!;
+    (doc.sections as Array<Record<string, unknown>>)[2].hidden = true;
+    const toc = tocOf(doc as never);
+    expect(toc.map((item) => item.label)).toEqual(["Приветствие", "Культура", "Ресурсы"]);
+    expect(toc[2].number).toBe("03");
+  });
+});
