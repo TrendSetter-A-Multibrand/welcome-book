@@ -30,8 +30,9 @@ export function OnboardingPage({ content }: { content: Block }) {
   const label = text(content.header_label) ?? "Onboarding";
 
   return (
-    // Макет нарисован на 1440: шире страница остаётся по центру, а не растягивается.
-    <div className="mx-auto max-w-[1440px]">
+    // Страница тянется на весь экран: поля по краям остаются 40px (16px на телефоне),
+    // колонки сетки растут вместе с окном. Ограничение в 1440 снято по просьбе дизайнера.
+    <div className="w-full">
       <B2BHeader label={label} feedbackHref={href(content.feedback_link)} />
       <Crumbs items={crumbsOf(content)} />
       <main>{renderBlocks(nested(content.body))}</main>
