@@ -360,7 +360,7 @@ const DRAW: Record<string, (blok: Block) => React.ReactNode> = {
       label={text(blok.label)}
       title={text(blok.title) ?? ""}
       text={text(blok.text)}
-      buttonLabel={text(blok.button_label) ?? ""}
+      buttonLabel={text(blok.button_label)}
       buttonHref={href(blok.button_link)}
     />
   ),

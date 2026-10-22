@@ -16,7 +16,8 @@ export function FinalBanner({
   label?: string;
   title: string;
   text?: string;
-  buttonLabel: string;
+  /** Кнопки может не быть: без текста она не рисуется */
+  buttonLabel?: string;
   buttonHref: string;
 }) {
   return (
@@ -25,11 +26,13 @@ export function FinalBanner({
         {label ? <p className="t-label text-white">[{label}]</p> : null}
         <h2 className="t-display text-white">{title}</h2>
         {text ? <p className="t-body-l max-w-[560px] text-white">{text}</p> : null}
-        <div>
-          <Button href={buttonHref} variant="inverse">
-            {buttonLabel}
-          </Button>
-        </div>
+        {buttonLabel ? (
+          <div>
+            <Button href={buttonHref} variant="inverse">
+              {buttonLabel}
+            </Button>
+          </div>
+        ) : null}
       </div>
 
       {/* Мобайл: маскот под текстом, обрезан нижним краем; десктоп: справа по центру */}
