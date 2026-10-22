@@ -44,6 +44,9 @@ const range = (from: number, count: number) =>
 
 const sectionId = (index: number) => `section-${index + 1}`;
 
+/** Кнопка без адреса не должна молчать: она ведёт к первому разделу */
+const START_HERE = (to: string) => (to === "#" ? `#${sectionId(0)}` : to);
+
 /** Цвет плитки из палитры; чего в ней нет - рисуется на Paper, а не пропадает */
 const valueColor = (value: unknown): ValueColor => {
   const name = text(value);
@@ -231,7 +234,8 @@ const DRAW: Record<string, (blok: Block) => React.ReactNode> = {
       title={text(blok.title) ?? ""}
       text={text(blok.text)}
       buttonLabel={text(blok.button_label) ?? ""}
-      buttonHref={href(blok.button_link)}
+      // Пока редактор не указал адрес, «Let's start» ведёт к началу документа
+      buttonHref={START_HERE(href(blok.button_link))}
     />
   ),
 };
