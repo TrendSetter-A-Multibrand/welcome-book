@@ -1,6 +1,6 @@
 import { StepTile } from "@/components/blocks/StepTile";
 
-export type Step = { title: string; icon?: string };
+export type Step = { title: string; icon?: string; number?: string };
 
 /** Шаги первого дня: список строк на мобайле, 2-3 карточки в ряд в широкой колонке. */
 export function StepsGroup({ items }: { items: Step[] }) {
@@ -9,8 +9,8 @@ export function StepsGroup({ items }: { items: Step[] }) {
       {items.map((item, index) => (
         <StepTile
           key={item.title}
-          number={String(index + 1).padStart(2, "0")}
           {...item}
+          number={item.number ?? String(index + 1).padStart(2, "0")}
         />
       ))}
     </ol>

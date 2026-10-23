@@ -3,7 +3,7 @@
  * рамках и примечание. Появляется при прокрутке (подъём 24px, 600 ms).
  * Колонка ≥ 640: акцент 2fr / лид 3fr, принципы три в ряд.
  */
-export type Principle = { title: string; text: string };
+export type Principle = { title: string; text: string; number?: string };
 
 export function OffPricePlane({
   accent,
@@ -30,7 +30,7 @@ export function OffPricePlane({
               key={principle.title}
               className="flex flex-col gap-2 border border-white p-4 md:p-6"
             >
-              <span className="t-caption">{String(index + 1).padStart(2, "0")}</span>
+              <span className="t-caption">{principle.number ?? String(index + 1).padStart(2, "0")}</span>
               <span className="t-h4">{principle.title}</span>
               <span className="t-body">{principle.text}</span>
             </li>

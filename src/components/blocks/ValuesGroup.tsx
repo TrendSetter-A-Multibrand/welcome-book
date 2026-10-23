@@ -6,6 +6,7 @@ export type Value = {
   text?: string;
   color: ValueColor;
   icon?: string;
+  number?: string;
 };
 
 /**
@@ -20,8 +21,8 @@ export function ValuesGroup({ title, items }: { title: string; items: Value[] })
         {items.map((item, index) => (
           <ValueTile
             key={item.title}
-            number={String(index + 1).padStart(2, "0")}
             {...item}
+            number={item.number ?? String(index + 1).padStart(2, "0")}
           />
         ))}
       </ul>

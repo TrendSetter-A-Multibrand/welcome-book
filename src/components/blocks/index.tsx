@@ -191,6 +191,7 @@ const DRAW_CONTENT: Record<string, (blok: Block) => React.ReactNode> = {
       principles={nested(blok.principles).map((item) => ({
         title: text(item.title) ?? "",
         text: text(item.text) ?? "",
+        number: text(item.number),
       }))}
     />
   ),
@@ -203,6 +204,7 @@ const DRAW_CONTENT: Record<string, (blok: Block) => React.ReactNode> = {
         text: text(item.text),
         color: valueColor(item.color),
         icon: text(item.icon),
+        number: text(item.number),
       }))}
     />
   ),
@@ -243,6 +245,7 @@ const DRAW_CONTENT: Record<string, (blok: Block) => React.ReactNode> = {
       items={nested(blok.items).map((item) => ({
         title: text(item.title) ?? "",
         icon: text(item.icon),
+        number: text(item.number),
       }))}
     />
   ),
@@ -255,7 +258,7 @@ const DRAW_CONTENT: Record<string, (blok: Block) => React.ReactNode> = {
       <ResourcesFrame title={text(blok.title)}>
         {nested(blok.groups).map((group) => {
           const count = span(group.number_span);
-          const number = range(next, count);
+          const number = text(group.number) ?? range(next, count);
           next += count;
 
           switch (group.component) {
@@ -289,6 +292,7 @@ const DRAW_CONTENT: Record<string, (blok: Block) => React.ReactNode> = {
                       items={nested(group.items).map((item) => ({
                         question: text(item.question) ?? "",
                         answer: renderAnswer(item),
+                        number: text(item.number),
                       }))}
                     />
                   )}
