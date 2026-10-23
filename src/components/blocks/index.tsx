@@ -339,7 +339,10 @@ const DRAW: Record<string, (blok: Block) => React.ReactNode> = {
             section,
             <DocSection
               id={sectionId(index)}
-              head={`[${pad(index + 1)} / ${text(section.nav_label) ?? text(section.title) ?? ""}]`}
+              head={
+                text(section.head_label) ??
+                `[${pad(index + 1)} / ${text(section.nav_label) ?? text(section.title) ?? ""}]`
+              }
               title={text(section.title)}
               lead={text(section.lead)}
             >

@@ -133,17 +133,23 @@
         "required": true,
         "pos": 1
       },
+      "head_label": {
+        "type": "text",
+        "display_name": "Метка над разделом целиком (номер и знаки)",
+        "description": "Необязательно. Если заполнить, на сайте показывается ровно этот текст вместо автоматического, например [04 / РЕСУРСЫ] или 04 — Ресурсы. Пусто: номер ставится сам по порядку, а текст берётся из названия выше",
+        "pos": 2
+      },
       "title": {
         "type": "text",
         "display_name": "Заголовок раздела",
         "description": "Необязательно",
-        "pos": 2
+        "pos": 3
       },
       "lead": {
         "type": "textarea",
         "display_name": "Вводный абзац",
         "description": "Необязательно",
-        "pos": 3
+        "pos": 4
       },
       "content": {
         "type": "bloks",
@@ -159,7 +165,7 @@
           "steps_group",
           "resources_frame"
         ],
-        "pos": 4
+        "pos": 5
       },
       "hidden": {
         "type": "boolean",
