@@ -74,7 +74,8 @@ function editable(blok: Block, node: React.ReactNode) {
 export function tocOf(doc: Block): TocItem[] {
   return nested(doc.sections).map((section, index) => ({
     id: sectionId(index),
-    number: pad(index + 1),
+    // Если редактор вписал свою метку («[07 / РЕСУРСЫ]»), номер в оглавлении берём из неё
+    number: text(section.head_label)?.match(/\d+/)?.[0] ?? pad(index + 1),
     label: text(section.nav_label) ?? text(section.title) ?? "",
   }));
 }
