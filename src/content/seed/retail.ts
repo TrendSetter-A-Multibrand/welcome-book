@@ -76,7 +76,10 @@ export function retailContent(): Block {
               "Информация о торговом центре",
               "Скидки сотрудникам",
               "Если остались вопросы",
-            ].map((question) => b("qa_item", { question })),
+            ].map((question) =>
+              // В ТЗ тексты Retail FAQ пока пустые: стоит заглушка, чтобы пункты раскрывались.
+              b("qa_item", { question, answer: "Текст-заглушка. Здесь скоро появится ответ." })
+            ),
           }),
           feedbackGroup(b),
         ],
