@@ -1,8 +1,8 @@
 import { Tag } from "@/components/ui/Tag";
 
 /**
- * Плитка цифры: белая с рамкой 1px Sage, подпись - тёмный чип, значение
- * красным, под ним необязательный второй чип (период или источник).
+ * Плитка цифры: белая с рамкой 1px Sage, подпись - красный чип, значение
+ * красным, под ним необязательная строка (период или источник) Sage.
  */
 export function KpiTile({
   label,
@@ -20,7 +20,11 @@ export function KpiTile({
         <span className="t-kpi whitespace-nowrap text-red @min-[760px]:whitespace-normal">
           {value}
         </span>
-        {note ? <Tag>{note}</Tag> : null}
+        {note ? (
+          <span className="font-mono text-[14px] leading-[1.2] tracking-[0.04em] text-sage uppercase md:text-[16px]">
+            {note}
+          </span>
+        ) : null}
       </div>
     </li>
   );

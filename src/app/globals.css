@@ -174,8 +174,8 @@ body {
   line-height: 1.1;
   letter-spacing: -0.01em;
   @media (min-width: 48rem) {
-    font-size: 28px;
-    line-height: 1.2;
+    font-size: 40px;
+    line-height: 1.1;
   }
 }
 
