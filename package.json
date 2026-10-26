@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "storyblok:push": "node --env-file=.env.local scripts/storyblok-push.mjs",
-    "storyblok:seed": "node --env-file=.env.local scripts/storyblok-seed.mts"
+    "storyblok:seed": "node --env-file=.env.local scripts/storyblok-seed.mts",
+    "storyblok:login": "node --env-file=.env.local scripts/storyblok-login.mts"
   },
   "dependencies": {
     "next": "16.2.12",

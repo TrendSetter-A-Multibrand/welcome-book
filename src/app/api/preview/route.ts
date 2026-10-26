@@ -1,5 +1,6 @@
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 import { redirect } from "next/navigation";
+import { COOKIE, MAX_AGE, createSession } from "@/lib/access/session";
 
 /**
  * Вход из редактора Storyblok: он открывает сайт по этому адресу, браузер
@@ -23,6 +24,19 @@ export async function GET(request: Request) {
 
   const draft = await draftMode();
   draft.enable();
+
+  // Редактору заодно открывается обе версии: форма пароля ему не нужна
+  const session = await createSession("*", "preview");
+  if (session) {
+    (await cookies()).set(COOKIE, session, {
+      httpOnly: true,
+      secure: true,
+      // Страница открывается внутри iframe редактора: нужен SameSite=None
+      sameSite: "none",
+      path: "/",
+      maxAge: MAX_AGE,
+    });
+  }
 
   // Редактор дописывает к адресу путь истории, а сразу за ним свои параметры
   // (_storyblok, _storyblok_tk и др.), по которым Bridge на странице понимает,

@@ -1381,5 +1381,84 @@
         "pos": 0
       }
     }
+  },
+  {
+    "name": "login_page",
+    "display_name": "Окно входа",
+    "is_root": true,
+    "is_nestable": false,
+    "schema": {
+      "header_label": {
+        "type": "text",
+        "display_name": "Подпись в шапке",
+        "pos": 0,
+        "description": "Например: Onboarding"
+      },
+      "eyebrow": {
+        "type": "text",
+        "display_name": "Метка над заголовком",
+        "pos": 1,
+        "description": "Например: [Onboarding]"
+      },
+      "title": {
+        "type": "text",
+        "display_name": "Заголовок",
+        "pos": 2,
+        "description": "Например: Привет!"
+      },
+      "title_error": {
+        "type": "text",
+        "display_name": "Заголовок после неверного ввода",
+        "pos": 3,
+        "description": "Например: Хм, не подошло."
+      },
+      "lead": {
+        "type": "textarea",
+        "display_name": "Текст под заголовком",
+        "pos": 4
+      },
+      "email_label": {
+        "type": "text",
+        "display_name": "Подпись поля почты",
+        "pos": 5
+      },
+      "email_placeholder": {
+        "type": "text",
+        "display_name": "Подсказка в поле почты",
+        "pos": 6
+      },
+      "password_label": {
+        "type": "text",
+        "display_name": "Подпись поля пароля",
+        "pos": 7
+      },
+      "password_placeholder": {
+        "type": "text",
+        "display_name": "Подсказка в поле пароля",
+        "pos": 8
+      },
+      "button": {
+        "type": "text",
+        "display_name": "Текст кнопки",
+        "pos": 9,
+        "description": "Например: Войти"
+      },
+      "hint": {
+        "type": "textarea",
+        "display_name": "Подсказка под кнопкой",
+        "pos": 10
+      },
+      "error_hint": {
+        "type": "textarea",
+        "display_name": "Текст ошибки под кнопкой",
+        "pos": 11,
+        "description": "Показывается красным после неверной почты или пароля"
+      },
+      "meta_title": {
+        "type": "text",
+        "display_name": "Заголовок для вкладки",
+        "pos": 12
+      }
+    }
   }
 ]
