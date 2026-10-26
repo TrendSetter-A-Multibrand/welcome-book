@@ -2,15 +2,14 @@ import Image from "next/image";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Письмо CEO: плашка Paper, красная кавычка, цитата. В широкой колонке цитата
- * слева, справа квадратное фото 300 с именем и ролью под ним; на мобайле фото
- * 56 стоит рядом с именем.
+ * Письмо CEO: плашка Paper, красная кавычка по правому краю, цитата, ниже
+ * смайл-маскот 56 с именем и ролью. Загруженное фото не показываем: вместо него
+ * везде наш маскот (поле `photo` оставлено в схеме, чтобы не ломать контент).
  */
 export function CeoLetter({
   quote,
   name,
   role,
-  photo,
 }: {
   quote: string;
   name: string;
@@ -18,36 +17,33 @@ export function CeoLetter({
   photo?: { src: string; alt: string };
 }) {
   return (
-    <figure className="flex flex-col gap-6 bg-paper p-6 md:p-12 @min-[640px]:flex-row @min-[640px]:gap-12">
-      <div className="flex min-w-0 flex-1 flex-col gap-6 @min-[640px]:justify-between">
-        <Icon
-          name="quote"
-          className="h-[22.8px] w-8 text-red @min-[640px]:h-[28.6px] @min-[640px]:w-10"
-        />
-        {/* Размер цитаты подбирается под колонку (в макете H3…H1): 40px влезает,
-            только когда под текст остаётся ~450px, иначе длинные слова вылезают. */}
-        <blockquote className="t-h3 text-sage [overflow-wrap:anywhere] @min-[880px]:t-h2">
-          {quote}
-        </blockquote>
-      </div>
+    <figure className="flex flex-col gap-6 bg-paper p-6 md:gap-12 md:p-12">
+      <Icon
+        name="quote"
+        className="h-[22.8px] w-8 self-end text-red @min-[640px]:h-[28.6px] @min-[640px]:w-10"
+      />
+      {/* По макету: 19px на мобайле, 22px на десктопе; абзацы цитаты - переносами строк */}
+      <blockquote className="whitespace-pre-line text-[19px] leading-[1.2] font-medium tracking-[-0.01em] text-sage [overflow-wrap:anywhere] md:text-[22px] md:leading-[1.25] md:tracking-normal">
+        {quote}
+      </blockquote>
 
-      <figcaption className="flex items-center gap-4 @min-[640px]:flex-col @min-[640px]:items-start">
-        <div className="relative flex size-14 shrink-0 items-center justify-center bg-line @min-[640px]:size-[300px]">
-          {photo ? (
-            <Image
-              src={photo.src}
-              alt={photo.alt || name}
-              fill
-              sizes="(min-width: 640px) 300px, 56px"
-              className="object-cover"
-            />
-          ) : (
-            <span className="t-caption hidden text-text-2 @min-[640px]:inline">Фото CEO</span>
-          )}
-        </div>
+      <figcaption className="flex items-center gap-4">
+        <Image
+          src="/brand/mascot.svg"
+          alt=""
+          width={56}
+          height={56}
+          className="size-14 shrink-0"
+        />
         <div className="flex flex-col gap-1">
-          <span className="t-h4 text-sage">{name}</span>
-          {role ? <span className="t-caption text-text-2">{role}</span> : null}
+          <span className="text-[17px] leading-[1.25] font-medium text-sage">
+            {name}
+          </span>
+          {role ? (
+            <span className="font-mono text-[11px] leading-[1.3] tracking-[0.04em] text-text-2 uppercase">
+              {role}
+            </span>
+          ) : null}
         </div>
       </figcaption>
     </figure>
