@@ -7,7 +7,7 @@ import { codesFor, type Code } from "@/lib/access/codes";
  *   base64url({ a: аудитория, k: отпечаток пароля, e: срок }) + "." + подпись
  *
  * Подпись - HMAC-SHA256 ключом ACCESS_SECRET, поэтому cookie нельзя подделать.
- * Отпечаток `k` - начало SHA-256 входа (логин+пароль или один пароль): пока этот вход
+ * Отпечаток `k` - начало SHA-256 входа (логин+пароль): пока этот вход
  * есть в списке, сессия живёт; убрали или отключили - он закрывается сразу.
  * Аудитория "*" выдаётся только редактору Storyblok через /api/preview.
  *
@@ -61,15 +61,14 @@ async function sign(body: string) {
   return toHex(await crypto.subtle.sign("HMAC", key, encoder.encode(body)));
 }
 
-/** Отпечаток входа: у именного - логин вместе с паролем, у общего - один пароль */
-const entryKey = ({ login, password }: Code, given?: string) =>
-  fingerprint(login ? `${(given ?? login).trim().toLowerCase()}
-${password}` : password);
+/** Отпечаток входа: логин (без регистра) вместе с паролем */
+const entryKey = ({ login, password }: Code) =>
+  fingerprint(`${login.trim().toLowerCase()}
+${password}`);
 
 /**
- * По логину и паролю - в какую версию они пускают. Вход с логином требует и
- * логин, и пароль; вход без логина (общий пароль) - только пароль. Перебирает
- * оба списка целиком, не останавливаясь на первом совпадении.
+ * По логину и паролю - в какую версию они пускают. Нужны оба. Перебирает оба
+ * списка целиком, не останавливаясь на первом совпадении.
  */
 export async function matchCode(
   login: string,
@@ -80,10 +79,8 @@ export async function matchCode(
   for (const audience of AUDIENCES) {
     for (const code of await codesFor(audience)) {
       const passwordOk = sameText(await fingerprint(code.password), await fingerprint(password));
-      const loginOk = code.login
-        ? sameText(code.login.trim().toLowerCase(), login.trim().toLowerCase())
-        : true;
-      if (passwordOk && loginOk && password) {
+      const loginOk = sameText(code.login.trim().toLowerCase(), login.trim().toLowerCase());
+      if (passwordOk && loginOk && login.trim() && password) {
         found = { audience, key: await entryKey(code) };
       }
     }

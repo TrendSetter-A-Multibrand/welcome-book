@@ -13,7 +13,7 @@ beforeEach(() => {
   delete process.env.ACCESS_RETAIL;
   managed.list = [
     { audience: "office", password: "pw-ivan", login: "Ivan" },
-    { audience: "retail", password: "shared" },
+    { audience: "retail", password: "pw-anna", login: "anna" },
   ];
 });
 
@@ -24,8 +24,17 @@ describe("именной вход", () => {
     expect(await matchCode("ivan", "wrong")).toBeNull();
   });
 
-  it("общий пароль без логина пускает с любым логином", async () => {
-    expect((await matchCode("кто-угодно", "shared"))?.audience).toBe("retail");
+  it("пустой или чужой логин не пускает даже с верным паролем", async () => {
+    expect(await matchCode("", "pw-anna")).toBeNull();
+    expect(await matchCode("ivan", "pw-anna")).toBeNull();
+    expect((await matchCode("ANNA", "pw-anna"))?.audience).toBe("retail");
+  });
+
+  it("запись из окружения без логина не действует, с логином - да", async () => {
+    process.env.ACCESS_OFFICE = "голый-пароль, boss:pa:ss";
+    expect(await matchCode("boss", "голый-пароль")).toBeNull();
+    expect(await matchCode("", "голый-пароль")).toBeNull();
+    expect((await matchCode("boss", "pa:ss"))?.audience).toBe("office");
   });
 
   it("отключили именной вход - сессия закрыта", async () => {

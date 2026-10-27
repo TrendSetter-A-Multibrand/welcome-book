@@ -7,6 +7,7 @@ const blok = (fields: Record<string, unknown>) => ({
   _uid: "x",
   component: "access_code",
   audience: "office",
+  login: "ivan",
   password: "secret",
   ...fields,
 });
@@ -28,16 +29,17 @@ describe("expired", () => {
 describe("activeCodes", () => {
   it("берёт включённые пароли с версией", () => {
     expect(activeCodes([blok({}), blok({ audience: "retail", password: " r " })], now)).toEqual([
-      { audience: "office", password: "secret" },
-      { audience: "retail", password: "r" },
+      { audience: "office", password: "secret", login: "ivan" },
+      { audience: "retail", password: "r", login: "ivan" },
     ]);
   });
-  it("пропускает отключённые, истёкшие, пустые и с неизвестной версией", () => {
+  it("пропускает отключённые, истёкшие, без пароля или логина и с неизвестной версией", () => {
     const list = [
       blok({ disabled: true }),
       blok({ valid_until: "2026-01-01 00:00" }),
       blok({ password: "  " }),
       blok({ audience: "other" }),
+      blok({ login: " " }),
     ];
     expect(activeCodes(list, now)).toEqual([]);
   });
