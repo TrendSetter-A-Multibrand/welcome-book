@@ -48,7 +48,7 @@ export default async function Home() {
   return (
     <>
       <B2BHeader label={pick("header_label")} feedbackHref="#" />
-      <main className="gutter-x flex min-h-[calc(100vh-64px)] flex-col justify-center py-12 md:min-h-[calc(100vh-80px)] md:py-24">
+      <main className="gutter-x flex min-h-[calc(100vh-64px)] flex-col items-center justify-center py-12 md:min-h-[calc(100vh-80px)] md:py-24">
         <LoginForm texts={texts} />
       </main>
     </>

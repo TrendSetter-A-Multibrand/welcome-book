@@ -1,6 +1,5 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { emailAllowed } from "@/lib/access/codes";
 import { createSession, matchCode, readSession } from "@/lib/access/session";
 
 const env = { ...process.env };
@@ -9,7 +8,6 @@ beforeEach(() => {
   process.env.ACCESS_SECRET = "test-secret";
   process.env.ACCESS_OFFICE = "office-one, office-two";
   process.env.ACCESS_RETAIL = "retail-one";
-  delete process.env.ACCESS_EMAIL_DOMAINS;
 });
 
 afterEach(() => {
@@ -61,19 +59,5 @@ describe("сессия", () => {
 
   it("сессия редактора открывает обе версии", async () => {
     expect(await readSession((await createSession("*", "preview"))!)).toBe("*");
-  });
-});
-
-describe("emailAllowed", () => {
-  it("проверяет форму адреса", () => {
-    expect(emailAllowed("a@b.ru")).toBe(true);
-    expect(emailAllowed("a@b")).toBe(false);
-    expect(emailAllowed("")).toBe(false);
-  });
-
-  it("с ACCESS_EMAIL_DOMAINS пускает только свои домены", () => {
-    process.env.ACCESS_EMAIL_DOMAINS = "trendsettercrew.com";
-    expect(emailAllowed("Ivan@TrendSetterCrew.com")).toBe(true);
-    expect(emailAllowed("ivan@gmail.com")).toBe(false);
   });
 });

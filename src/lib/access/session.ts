@@ -72,7 +72,7 @@ export async function matchCode(
   let found: { audience: Audience; key: string } | null = null;
 
   for (const audience of AUDIENCES) {
-    for (const code of codesFor(audience)) {
+    for (const code of await codesFor(audience)) {
       if (sameText(await fingerprint(code), given)) found = { audience, key: given };
     }
   }
@@ -104,7 +104,7 @@ export async function readSession(value: string | undefined): Promise<Audience |
     if (!AUDIENCES.includes(payload.a)) return null;
 
     // Пароль, по которому вошли, должен всё ещё быть в списке
-    for (const code of codesFor(payload.a)) {
+    for (const code of await codesFor(payload.a)) {
       if (sameText(await fingerprint(code), payload.k)) return payload.a;
     }
     return null;

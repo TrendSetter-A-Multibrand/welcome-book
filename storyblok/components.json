@@ -1460,5 +1460,73 @@
         "pos": 12
       }
     }
+  },
+  {
+    "name": "access_code",
+    "display_name": "Пароль доступа",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": {
+        "type": "text",
+        "display_name": "Кому",
+        "pos": 0,
+        "description": "Для себя: имя или команда, например «Склад Москва». На сайте не показывается."
+      },
+      "audience": {
+        "type": "option",
+        "display_name": "Какую версию открывает",
+        "source": "self",
+        "options": [
+          {
+            "name": "Office",
+            "value": "office"
+          },
+          {
+            "name": "Retail",
+            "value": "retail"
+          }
+        ],
+        "default_value": "office",
+        "pos": 1
+      },
+      "password": {
+        "type": "text",
+        "display_name": "Пароль",
+        "pos": 2,
+        "required": true,
+        "description": "Его вводят на странице входа. Без пробелов по краям."
+      },
+      "valid_until": {
+        "type": "datetime",
+        "display_name": "Действует до (необязательно)",
+        "pos": 3,
+        "description": "Пустое поле - пароль без срока. После этого времени (UTC) пароль перестаёт работать, а вошедшие по нему выходят."
+      },
+      "disabled": {
+        "type": "boolean",
+        "display_name": "Отключить",
+        "pos": 4,
+        "description": "Закрывает доступ по этому паролю, не удаляя запись."
+      }
+    }
+  },
+  {
+    "name": "access_page",
+    "display_name": "Доступ (пароли)",
+    "is_root": true,
+    "is_nestable": false,
+    "schema": {
+      "passwords": {
+        "type": "bloks",
+        "display_name": "Пароли",
+        "pos": 0,
+        "restrict_components": true,
+        "component_whitelist": [
+          "access_code"
+        ],
+        "description": "Изменения действуют в течение минуты после публикации истории."
+      }
+    }
   }
 ]

@@ -2,7 +2,6 @@
 
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { emailAllowed } from "@/lib/access/codes";
 import { COOKIE, MAX_AGE, createSession, matchCode } from "@/lib/access/session";
 
 export type LoginState = { failed: boolean; email: string };
@@ -15,8 +14,8 @@ const LIMIT = 10;
 const pause = (ms: number) => new Promise((done) => setTimeout(done, ms));
 
 /**
- * Вход: почта и пароль. Пароль решает, какую версию открыть - Office или Retail.
- * На любую ошибку (почта, пароль, лимит попыток) отвечаем одинаково, чтобы по
+ * Вход: логин и пароль. Пароль решает, какую версию открыть - Office или Retail.
+ * На любую ошибку (логин, пароль, лимит попыток) отвечаем одинаково, чтобы по
  * ответу нельзя было понять, что именно не подошло.
  */
 export async function login(_: LoginState, form: FormData): Promise<LoginState> {
@@ -32,7 +31,7 @@ export async function login(_: LoginState, form: FormData): Promise<LoginState> 
     return { failed: true, email };
   }
 
-  const match = emailAllowed(email) && password ? await matchCode(password) : null;
+  const match = email && password ? await matchCode(password) : null;
   const value = match ? await createSession(match.audience, match.key) : null;
 
   if (!match || !value) {

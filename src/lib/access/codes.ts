@@ -1,8 +1,10 @@
 import type { Audience } from "@/lib/audiences";
+import { managedCodes } from "@/lib/access/managed";
 
 /**
- * Пароли доступа. Лежат только в окружении (Vercel / .env.local), в Storyblok и
- * в репозиторий не попадают: контент CMS читается публичным токеном.
+ * Пароли доступа из окружения (Vercel / .env.local) - запасной вход, который
+ * работает, даже если Storyblok недоступен. Основной список ведёт админ в
+ * Storyblok (см. managed.ts).
  *
  *   ACCESS_OFFICE  - пароли для версии Office
  *   ACCESS_RETAIL  - пароли для версии Retail
@@ -23,18 +25,13 @@ const split = (raw: string | undefined) =>
     .map((code) => code.trim())
     .filter(Boolean);
 
-export const codesFor = (audience: Audience) => split(process.env[ENV[audience]]);
-
 /**
- * Разрешённые домены почты (`ACCESS_EMAIL_DOMAINS="trendsettercrew.com"`).
- * Не задано - подходит любой адрес правильной формы.
+ * Все действующие пароли версии: из окружения (запасной вход) и из Storyblok
+ * (история `access`, их ведёт админ).
  */
-export function emailAllowed(email: string) {
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
-
-  const domains = split(process.env.ACCESS_EMAIL_DOMAINS).map((d) =>
-    d.toLowerCase().replace(/^@/, "")
-  );
-  if (!domains.length) return true;
-  return domains.includes(email.split("@").pop()!.toLowerCase());
+export async function codesFor(audience: Audience) {
+  const managed = (await managedCodes())
+    .filter((code) => code.audience === audience)
+    .map((code) => code.password);
+  return [...split(process.env[ENV[audience]]), ...managed];
 }

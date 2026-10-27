@@ -57,8 +57,8 @@ export function LoginForm({ texts }: { texts: LoginTexts }) {
           ref={email}
           id="email"
           name="email"
-          type="email"
-          autoComplete="email"
+          type="text"
+          autoComplete="username"
           required
           defaultValue={state.email}
           placeholder={texts.emailPlaceholder}
