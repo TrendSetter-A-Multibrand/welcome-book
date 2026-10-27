@@ -4,7 +4,7 @@ import type { Block } from "@/lib/storyblok/fetchStory";
 
 /**
  * Пароли, которые админ ведёт в Storyblok: история `access`, блоки `access_code`
- * (кому, версия, пароль, срок, «Отключить»). Читаются только на сервере токеном
+ * (кому, версия, логин, пароль, срок, «Отключить»). Читаются только на сервере токеном
  * сайта и в браузер не попадают.
  *
  * Список держим в памяти полминуты, чтобы не ходить в Storyblok на каждый запрос,
@@ -14,7 +14,7 @@ import type { Block } from "@/lib/storyblok/fetchStory";
 const SLUG = "access";
 const TTL = 30_000;
 
-export type ManagedCode = { audience: Audience; password: string };
+export type ManagedCode = { audience: Audience; password: string; login?: string };
 
 let cache: { at: number; codes: ManagedCode[] } | null = null;
 
@@ -32,7 +32,8 @@ export function activeCodes(blocks: Block[], now = Date.now()): ManagedCode[] {
     if (!password || !isAudience(audience)) return [];
     if (block.disabled === true || block.disabled === "true") return [];
     if (expired(block.valid_until, now)) return [];
-    return [{ audience, password }];
+    const login = typeof block.login === "string" ? block.login.trim() : "";
+    return [login ? { audience, password, login } : { audience, password }];
   });
 }
 

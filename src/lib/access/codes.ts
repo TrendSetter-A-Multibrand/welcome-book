@@ -25,13 +25,16 @@ const split = (raw: string | undefined) =>
     .map((code) => code.trim())
     .filter(Boolean);
 
+/** Вход: пароль и, если админ задал, логин. Без логина подходит любой логин (общий пароль) */
+export type Code = { password: string; login?: string };
+
 /**
- * Все действующие пароли версии: из окружения (запасной вход) и из Storyblok
- * (история `access`, их ведёт админ).
+ * Все действующие входы версии: пароли из окружения (запасной вход, общие) и из
+ * Storyblok (история `access`, их ведёт админ).
  */
-export async function codesFor(audience: Audience) {
+export async function codesFor(audience: Audience): Promise<Code[]> {
   const managed = (await managedCodes())
     .filter((code) => code.audience === audience)
-    .map((code) => code.password);
-  return [...split(process.env[ENV[audience]]), ...managed];
+    .map(({ password, login }) => ({ password, login }));
+  return [...split(process.env[ENV[audience]]).map((password) => ({ password })), ...managed];
 }

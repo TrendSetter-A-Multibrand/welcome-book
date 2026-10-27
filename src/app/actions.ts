@@ -31,7 +31,7 @@ export async function login(_: LoginState, form: FormData): Promise<LoginState> 
     return { failed: true, email };
   }
 
-  const match = email && password ? await matchCode(password) : null;
+  const match = email && password ? await matchCode(email, password) : null;
   const value = match ? await createSession(match.audience, match.key) : null;
 
   if (!match || !value) {

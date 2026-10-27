@@ -1,5 +1,5 @@
 import { AUDIENCES, type Audience } from "@/lib/audiences";
-import { codesFor } from "@/lib/access/codes";
+import { codesFor, type Code } from "@/lib/access/codes";
 
 /**
  * Сессия входа - подписанная cookie, без базы данных:
@@ -7,8 +7,8 @@ import { codesFor } from "@/lib/access/codes";
  *   base64url({ a: аудитория, k: отпечаток пароля, e: срок }) + "." + подпись
  *
  * Подпись - HMAC-SHA256 ключом ACCESS_SECRET, поэтому cookie нельзя подделать.
- * Отпечаток `k` - начало SHA-256 пароля, по которому вошли: пока этот пароль есть
- * в окружении, сессия живёт; убрали пароль - вход по нему закрывается сразу.
+ * Отпечаток `k` - начало SHA-256 входа (логин+пароль или один пароль): пока этот вход
+ * есть в списке, сессия живёт; убрали или отключили - он закрывается сразу.
  * Аудитория "*" выдаётся только редактору Storyblok через /api/preview.
  *
  * Только Web Crypto: тот же код работает и в proxy, и в серверном действии.
@@ -61,19 +61,31 @@ async function sign(body: string) {
   return toHex(await crypto.subtle.sign("HMAC", key, encoder.encode(body)));
 }
 
+/** Отпечаток входа: у именного - логин вместе с паролем, у общего - один пароль */
+const entryKey = ({ login, password }: Code, given?: string) =>
+  fingerprint(login ? `${(given ?? login).trim().toLowerCase()}
+${password}` : password);
+
 /**
- * По паролю - в какую версию он пускает. Перебирает оба списка целиком, не
- * останавливаясь на первом совпадении.
+ * По логину и паролю - в какую версию они пускают. Вход с логином требует и
+ * логин, и пароль; вход без логина (общий пароль) - только пароль. Перебирает
+ * оба списка целиком, не останавливаясь на первом совпадении.
  */
 export async function matchCode(
+  login: string,
   password: string
 ): Promise<{ audience: Audience; key: string } | null> {
-  const given = await fingerprint(password);
   let found: { audience: Audience; key: string } | null = null;
 
   for (const audience of AUDIENCES) {
     for (const code of await codesFor(audience)) {
-      if (sameText(await fingerprint(code), given)) found = { audience, key: given };
+      const passwordOk = sameText(await fingerprint(code.password), await fingerprint(password));
+      const loginOk = code.login
+        ? sameText(code.login.trim().toLowerCase(), login.trim().toLowerCase())
+        : true;
+      if (passwordOk && loginOk && password) {
+        found = { audience, key: await entryKey(code) };
+      }
     }
   }
   return found;
@@ -105,7 +117,7 @@ export async function readSession(value: string | undefined): Promise<Audience |
 
     // Пароль, по которому вошли, должен всё ещё быть в списке
     for (const code of await codesFor(payload.a)) {
-      if (sameText(await fingerprint(code), payload.k)) return payload.a;
+      if (sameText(await entryKey(code), payload.k)) return payload.a;
     }
     return null;
   } catch {
