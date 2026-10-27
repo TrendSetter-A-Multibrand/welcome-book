@@ -49,3 +49,9 @@ export async function login(_: LoginState, form: FormData): Promise<LoginState> 
   });
   redirect(`/${match.audience}`);
 }
+
+/** Выход: убирает cookie входа и возвращает на окно входа */
+export async function logout() {
+  (await cookies()).delete(COOKIE);
+  redirect("/");
+}
