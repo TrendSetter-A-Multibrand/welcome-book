@@ -1,4 +1,4 @@
-import type { Audience } from "@/lib/audiences";
+import type { Role } from "@/lib/audiences";
 import { managedCodes } from "@/lib/access/managed";
 
 /**
@@ -8,15 +8,17 @@ import { managedCodes } from "@/lib/access/managed";
  *
  *   ACCESS_OFFICE  - входы для версии Office, вид `логин:пароль`
  *   ACCESS_RETAIL  - входы для версии Retail
+ *   ACCESS_ADMIN   - входы админа (страница статистики)
  *
  * В переменной может быть несколько паролей через запятую или с новой строки.
  * Так рассылается «свой пароль каждому» или «новый пароль каждую неделю»: новый
  * пароль дописывается, а старый убирается - и сессии, выданные по старому,
  * перестают работать.
  */
-const ENV: Record<Audience, string> = {
+const ENV: Record<Role, string> = {
   office: "ACCESS_OFFICE",
   retail: "ACCESS_RETAIL",
+  admin: "ACCESS_ADMIN",
 };
 
 const split = (raw: string | undefined) =>
@@ -33,7 +35,7 @@ export type Code = { login: string; password: string };
  * (история `access`, их ведёт админ). В окружении вход пишется `логин:пароль`;
  * запись без логина не действует.
  */
-export async function codesFor(audience: Audience): Promise<Code[]> {
+export async function codesFor(audience: Role): Promise<Code[]> {
   const managed = (await managedCodes())
     .filter((code) => code.audience === audience)
     .map(({ login, password }) => ({ login, password }));

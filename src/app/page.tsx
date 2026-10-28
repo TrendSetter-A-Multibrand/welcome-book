@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
  */
 export default async function Home() {
   const session = await readSession((await cookies()).get(COOKIE)?.value);
-  if (session && session !== "*") redirect(`/${session}`);
+  if (session && session !== "*") redirect(session === "admin" ? "/stats" : `/${session}`);
 
   const { pick } = await loadContent();
   const texts: LoginTexts = {

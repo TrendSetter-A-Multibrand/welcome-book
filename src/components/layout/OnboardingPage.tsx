@@ -2,6 +2,7 @@ import type { Block } from "@/lib/storyblok/fetchStory";
 import { href, nested, text } from "@/lib/blok";
 import { renderBlocks } from "@/components/blocks";
 import { B2BHeader } from "@/components/layout/B2BHeader";
+import { Heartbeat } from "@/components/layout/Heartbeat";
 import { Crumbs, type Crumb } from "@/components/layout/Crumbs";
 
 /**
@@ -35,6 +36,7 @@ export function OnboardingPage({ content }: { content: Block }) {
       <B2BHeader label={label} feedbackHref={href(content.feedback_link)} signOut />
       <Crumbs items={crumbsOf(content)} />
       <main>{renderBlocks(nested(content.body))}</main>
+      <Heartbeat />
     </div>
   );
 }

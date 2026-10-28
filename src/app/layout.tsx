@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Inter } from "next/font/google";
 import { siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -37,7 +38,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${inter.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-white text-sage">{children}</body>
+      <body className="min-h-screen bg-white text-sage">{children}
+        <Analytics />
+      </body>
     </html>
   );
 }

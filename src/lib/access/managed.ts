@@ -1,4 +1,4 @@
-import { isAudience, type Audience } from "@/lib/audiences";
+import { isRole, type Role } from "@/lib/audiences";
 import { storyblokFetch } from "@/lib/storyblok/client";
 import type { Block } from "@/lib/storyblok/fetchStory";
 
@@ -14,7 +14,7 @@ import type { Block } from "@/lib/storyblok/fetchStory";
 const SLUG = "access";
 const TTL = 30_000;
 
-export type ManagedCode = { audience: Audience; password: string; login: string };
+export type ManagedCode = { audience: Role; password: string; login: string };
 
 let cache: { at: number; codes: ManagedCode[] } | null = null;
 
@@ -29,7 +29,7 @@ export function activeCodes(blocks: Block[], now = Date.now()): ManagedCode[] {
   return blocks.flatMap((block) => {
     const password = typeof block.password === "string" ? block.password.trim() : "";
     const audience = String(block.audience ?? "");
-    if (!password || !isAudience(audience)) return [];
+    if (!password || !isRole(audience)) return [];
     if (block.disabled === true || block.disabled === "true") return [];
     if (expired(block.valid_until, now)) return [];
     const login = typeof block.login === "string" ? block.login.trim() : "";

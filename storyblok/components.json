@@ -1485,6 +1485,10 @@
           {
             "name": "Retail",
             "value": "retail"
+          },
+          {
+            "name": "Админ (страница статистики)",
+            "value": "admin"
           }
         ],
         "default_value": "office",

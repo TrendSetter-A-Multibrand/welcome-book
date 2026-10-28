@@ -1,9 +1,9 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { createSession, matchCode, readSession } from "@/lib/access/session";
+import { createSession, matchCode, readIdentity, readSession } from "@/lib/access/session";
 
 const managed = vi.hoisted(() => ({
-  list: [] as { audience: "office" | "retail"; password: string; login?: string }[],
+  list: [] as { audience: "office" | "retail" | "admin"; password: string; login?: string }[],
 }));
 vi.mock("@/lib/access/managed", () => ({ managedCodes: async () => managed.list }));
 
@@ -35,6 +35,17 @@ describe("именной вход", () => {
     expect(await matchCode("boss", "голый-пароль")).toBeNull();
     expect(await matchCode("", "голый-пароль")).toBeNull();
     expect((await matchCode("boss", "pa:ss"))?.audience).toBe("office");
+  });
+
+  it("админский вход открывает роль admin и несёт логин и id сессии", async () => {
+    managed.list = [{ audience: "admin", password: "pw-boss", login: "boss" }];
+    const match = (await matchCode("Boss", "pw-boss"))!;
+    expect(match.audience).toBe("admin");
+    const cookie = (await createSession(match.audience, match.key, {
+      login: match.login,
+      sid: "sid-1",
+    }))!;
+    expect(await readIdentity(cookie)).toEqual({ role: "admin", login: "Boss", sid: "sid-1" });
   });
 
   it("отключили именной вход - сессия закрыта", async () => {

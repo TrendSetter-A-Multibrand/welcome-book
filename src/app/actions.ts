@@ -2,7 +2,15 @@
 
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { COOKIE, MAX_AGE, createSession, matchCode } from "@/lib/access/session";
+import { after } from "next/server";
+import {
+  COOKIE,
+  MAX_AGE,
+  createSession,
+  matchCode,
+  readIdentity,
+} from "@/lib/access/session";
+import { logFail, logLogin, logLogout } from "@/lib/stats/log";
 
 export type LoginState = { failed: boolean; email: string };
 
@@ -32,10 +40,14 @@ export async function login(_: LoginState, form: FormData): Promise<LoginState> 
   }
 
   const match = email && password ? await matchCode(email, password) : null;
-  const value = match ? await createSession(match.audience, match.key) : null;
+  const sid = crypto.randomUUID();
+  const value = match
+    ? await createSession(match.audience, match.key, { login: match.login, sid })
+    : null;
 
   if (!match || !value) {
     attempts.set(from, [...recent, now]);
+    after(() => logFail(email));
     await pause(600);
     return { failed: true, email };
   }
@@ -47,11 +59,15 @@ export async function login(_: LoginState, form: FormData): Promise<LoginState> 
     path: "/",
     maxAge: MAX_AGE,
   });
-  redirect(`/${match.audience}`);
+  after(() => logLogin(sid, match.login, match.audience));
+  redirect(match.audience === "admin" ? "/stats" : `/${match.audience}`);
 }
 
 /** Выход: убирает cookie входа и возвращает на окно входа */
 export async function logout() {
-  (await cookies()).delete(COOKIE);
+  const jar = await cookies();
+  const who = await readIdentity(jar.get(COOKIE)?.value);
+  jar.delete(COOKIE);
+  if (who?.sid) after(() => logLogout(who.sid, who.login));
   redirect("/");
 }
